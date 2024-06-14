@@ -1,16 +1,26 @@
 import 'package:flutter/material.dart';
 import 'app_fonts.dart';
 
-
 class AppTextStyles{
 
-  static montserrato({required Color color,required fontSize,required FontWeight weight,}){
-return TextStyle(height: 1,color: color,fontWeight: weight,fontSize: fontSize,fontFamily:AppFontFamilies.montserrat );
+  static robotoRegular({required Color color,required fontSize,required FontWeight weight,}){
+return TextStyle(height: 1,color: color,fontWeight: weight,fontSize: fontSize,fontFamily:AppFontFamilies.robotoRegular );
 }
 
-  static roboto({required Color color,required fontSize,required FontWeight weight,}){
-    return TextStyle(height: 1,color: color,fontWeight: weight,fontSize: fontSize,fontFamily:AppFontFamilies.roboto );
+  static robotoBold({required Color color,required fontSize,required FontWeight weight,}){
+    return TextStyle(height: 1,color: color,fontWeight: weight,fontSize: fontSize,fontFamily: AppFontFamilies.robotoBold);
   }
 
+  static robotoBoldItalic({required Color color,required fontSize,required FontWeight weight,}){
+    return TextStyle(height: 1,color: color,fontWeight: weight,fontSize: fontSize,fontFamily: AppFontFamilies.robotoBoldItalic);
+  }
+
+  static robotoThin({required Color color,required fontSize,required FontWeight weight,}){
+    return TextStyle(height: 1,color: color,fontWeight: weight,fontSize: fontSize,fontFamily: AppFontFamilies.robotoThin);
+  }
+
+  static robotoMedium({required Color color,required fontSize,required FontWeight weight,}){
+    return TextStyle(height: 1,color: color,fontWeight: weight,fontSize: fontSize,fontFamily: AppFontFamilies.robotoMedium);
+  }
 
 }

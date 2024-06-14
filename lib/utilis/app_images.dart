@@ -2,8 +2,8 @@
 
 class AppImages{
   //images
-  static String imgLogoModified='assets/images/app_logo_modified.png';
-  static String imgLogo='assets/images/logo1.png';
+  static String imgLogo='assets/images/codecoy_logo.jpg';
+  static String imgLogoTransparent='assets/images/logo_transparent.png';
   static String imgPattern='assets/images/pattern.png';
   static String imgBoarding='assets/images/boarding_image.png';
 
@@ -11,7 +11,7 @@ class AppImages{
   static String imgFirst='assets/images/first.png';
   static String imgSecond='assets/images/second.jpg';
   static String imgThird='assets/images/third.jpg';
-  static String imgProfile='assets/images/profile.jpg';
+  static String imgProfile='assets/images/profile.png';
 
 
 
