@@ -32,12 +32,12 @@ class _BoardingScreenState extends State<BoardingScreen> {
               child: body()),
 
           Positioned(
-              bottom: 25.h,
-              left: 25.w,
+              bottom: 35.h,
+              left: 35.w,
               child: _btnSkip()),
           Positioned(
-              bottom: 25.h,
-              right: 25.w,
+              bottom: 35.h,
+              right: 35.w,
               child: _btnNext())
         ],),
       ),
@@ -57,13 +57,16 @@ class _BoardingScreenState extends State<BoardingScreen> {
             weight: FontWeight.w500,
           )),
           SizedBox(height: 30.h,),
-          Image.asset(AppImages.imgBoarding,height: 1.sh*0.45,),
+          Image.asset(AppImages.imgBoarding,height: 1.sh*0.55),
 
-          Text(AppConstants.boardingSubtitle,style: AppTextStyles.robotoMedium(
-            color: AppColors.white,
-            fontSize: 17.sp,
-            weight: FontWeight.w500,
-          ),textAlign: TextAlign.center,),
+          Padding(
+            padding:  EdgeInsets.symmetric(horizontal: 20.w),
+            child: Text(AppConstants.boardingSubtitle,style: AppTextStyles.robotoMedium(
+              color: AppColors.white,
+              fontSize: 17.sp,
+              weight: FontWeight.w500,
+            ),textAlign: TextAlign.center,),
+          ),
           const SizedBox(height: 5,),
         ])
     );
@@ -84,9 +87,9 @@ class _BoardingScreenState extends State<BoardingScreen> {
             image: DecorationImage(image: Image.asset(AppImages.iconSkip).image,fit: BoxFit.cover)
         ),
         child:  Center(
-          child: Text('Skip',style:  AppTextStyles.robotoMedium(
+          child: Text(AppConstants.skip,style:  AppTextStyles.robotoMedium(
             color: AppColors.primary,
-            fontSize: 15.sp,
+            fontSize: 16.sp,
             weight: FontWeight.w500,
           ),),
         ),
@@ -108,9 +111,9 @@ class _BoardingScreenState extends State<BoardingScreen> {
             image: DecorationImage(image: Image.asset(AppImages.iconSkip).image,fit: BoxFit.cover)
         ),
         child:  Center(
-          child: Text('Next',style:  AppTextStyles.robotoMedium(
+          child: Text(AppConstants.next,style:  AppTextStyles.robotoMedium(
             color: AppColors.primary,
-            fontSize: 15.sp,
+            fontSize: 16.sp,
             weight: FontWeight.w500,
           ),),
         ),

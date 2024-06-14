@@ -1,15 +1,12 @@
 import 'dart:convert';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import '../../main.dart';
 import '../../network_config/api_urls.dart';
 import '../../network_config/network_config.dart';
 import '../../utilis/app_preferences.dart';
-import '../../utilis/app_routes.dart';
-import '../../view/screens/bottom_screen.dart';
 import '../../widgets/dialogues/otp_verify_dialogue.dart';
 part 'login_event.dart';
 part 'login_state.dart';

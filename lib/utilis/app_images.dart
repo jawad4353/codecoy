@@ -17,6 +17,7 @@ class AppImages{
 
   //Icons Home Screen
   static String iconStudent='assets/icons/student_icon.png';
+  static String iconEmail='assets/icons/email_icon.png';
   static String iconPrivacy='assets/icons/privacy_policy_icon.png';
   static String iconShareApp='assets/icons/share_icon.png';
   static String iconNotifications='assets/icons/notifications_icon.png';

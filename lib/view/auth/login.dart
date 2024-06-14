@@ -1,3 +1,6 @@
+import 'package:codecoy/utilis/app_routes.dart';
+import 'package:codecoy/view/auth/forget_password.dart';
+import 'package:codecoy/view/auth/register.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,6 +11,7 @@ import '../../utilis/app_constants.dart';
 import '../../utilis/app_images.dart';
 import '../../utilis/app_preferences.dart';
 import '../../utilis/app_text_styles.dart';
+import '../screens/bottom_screen.dart';
 
 
 class Login extends StatefulWidget {
@@ -58,7 +62,7 @@ class _LoginState extends State<Login> {
                   Padding(
                     padding:  EdgeInsets.only(left: 20.w,right: 20.w,top: 1.sh*0.28),
                     child: Column(children: [
-                      _textField(isPasswordField:false ,title:AppConstants.email ,hintText:AppConstants.userNameHint ,controller: _email,icon: AppImages.iconStudent),
+                      _textField(isPasswordField:false ,title:AppConstants.email ,hintText:AppConstants.emailHint ,controller: _email,icon: AppImages.iconStudent),
                       SizedBox(height: 20.h,),
                       _textField(isPasswordField: true,title:AppConstants.password ,hintText:'●●●●●●' ,controller: _password,icon: AppImages.iconPassword),
                       SizedBox(height: 3.h,),
@@ -68,7 +72,7 @@ class _LoginState extends State<Login> {
                     ],),
                   ),
                   Positioned(
-                      bottom: 35.h,
+                      bottom: 15.h,
                       left: 0,
                       right: 0,
                       child: _bottom()),
@@ -213,6 +217,7 @@ class _LoginState extends State<Login> {
               )
           ) ,
           onPressed: (){
+            Navigator.push(context, MyRoute(const BottomScreen()));
             if(_email.text.replaceAll(' ', '').isEmpty){
               EasyLoading.showInfo('Email required !');
               return;
@@ -242,7 +247,7 @@ class _LoginState extends State<Login> {
       Text(AppConstants.rememberMe,style: AppTextStyles.robotoMedium(color: AppColors.black191B32, fontSize: 14.sp, weight: FontWeight.w500)),
       const Spacer(),
       TextButton(onPressed: (){
-
+        Navigator.push(context, MyRoute(const ForgotPassword()));
       }, child: Text(AppConstants.forgotPassword,style: AppTextStyles.robotoMedium(color: AppColors.primary, fontSize: 14.sp, weight: FontWeight.bold)))
     ],);
   }
@@ -254,7 +259,7 @@ class _LoginState extends State<Login> {
         Text(AppConstants.dontHaveAccount,style: AppTextStyles.robotoMedium(color: AppColors.black191B32, fontSize: 14.sp, weight: FontWeight.w500),),
         InkWell(
           onTap: (){
-
+              Navigator.push(context, MyRoute(const Register()));
           },
           child:Text(AppConstants.signUp,style:AppTextStyles.robotoMedium(color: AppColors.primary, fontSize: 16.sp, weight: FontWeight.w600) ,),
         )

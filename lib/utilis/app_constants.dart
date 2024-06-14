@@ -8,21 +8,25 @@ class AppConstants{
   static String moveMate='Movemate';
   static String enterUsernamePassword='Enter your Email & Password';
   static String alreadyHaveAccount='Already have an account? ';
-  static String userName='User Name';
+  static String name='Name';
+  static String nameHint='Jawad';
   static String email='Email';
-  static String userNameHint='abc@gmail.com';
+  static String emailHint='abc@gmail.com';
   static String password='Password';
+  static String passwordHint='●●●●●●';
   static String rememberMe='Remember Me';
   static String forgotPassword='Forgot Password ?';
 
  //boarding
   static String boardingTitle='"Unified Teamwork Platform"';
-  static String boardingSubtitle='Enhance productivity with streamlined communication '
-      'and integrated tools for a cohesive work environment.';
+  static String boardingSubtitle='Boost productivity with clear communication and integrated tools for'
+      ' a smooth, efficient, and streamlined workflow';
+  static String skip='Skip';
+  static String next='Next';
   //Register
   static String signUp='Sign Up';
   static String enterRealInformation='Enter your information';
-  static String save='Save';
+
   static String confirmPassword='Confirm Password';
   static String phoneNumber='Phone  Number';
   static String session='Session';
