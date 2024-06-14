@@ -1,4 +1,4 @@
-import 'dart:io';
+
 import 'package:awesome_bottom_bar/awesome_bottom_bar.dart';
 import 'package:codecoy/view/screens/live_tracking/live_track.dart';
 import 'package:codecoy/view/screens/profile/profile.dart';
@@ -6,7 +6,7 @@ import 'package:codecoy/view/screens/weather/weather.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../utilis/app_colors.dart';
-import '../../widgets/dialogues/exit_dialogue.dart';
+import '../dialogues/exit_dialogue.dart';
 import 'home/home.dart';
 
 

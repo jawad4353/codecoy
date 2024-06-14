@@ -1,3 +1,4 @@
+import 'package:codecoy/utilis/app_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:share_plus/share_plus.dart';
@@ -7,8 +8,11 @@ import '../../../utilis/app_images.dart';
 import '../../../utilis/app_preferences.dart';
 import '../../../utilis/app_routes.dart';
 import '../../../utilis/app_text_styles.dart';
-import '../../../widgets/dialogues/logout.dart';
+
 import '../../auth/login.dart';
+import '../../dialogues/logout.dart';
+import '../more/change_password.dart';
+import '../more/web_view_helper.dart';
 
 
 
@@ -85,17 +89,15 @@ class _HomeState extends State<Home> {
                       ),
                     ),
                     accountName:  Text(preferences.getString(AppPrefs.keyId)??"",style:AppTextStyles.robotoMedium(color: AppColors.white, fontSize: 18.sp, weight: FontWeight.w600)), accountEmail:  Text(preferences.getString(AppPrefs.keyEmail)??"",style: AppTextStyles.robotoMedium(color: AppColors.white, fontSize: 16.sp, weight: FontWeight.w400),)),
-                _buttons(icon: AppImages.iconPassword,text: 'Change Password'),
-                _buttons(icon: AppImages.iconShareApp,text: 'Share App'),
-                _buttons(icon: AppImages.iconAboutUs,text: 'About Us'),
-                _buttons(icon:AppImages.iconPrivacyPolicy,text: 'Privacy Policy'),
-                _buttons(icon: AppImages.iconLogOut,text: 'Logout'),
+                _buttons(icon: AppImages.iconPassword,text: AppConstants.changePassword),
+                _buttons(icon: AppImages.iconShareApp,text: AppConstants.shareApp),
+                _buttons(icon: AppImages.iconAboutUs,text: AppConstants.aboutUs),
+                _buttons(icon:AppImages.iconPrivacyPolicy,text:AppConstants.contactUs),
+                _buttons(icon: AppImages.iconLogOut,text:AppConstants.logOut ),
 
-                const Align(
+                 Align(
                   alignment: Alignment.bottomRight,
-                  child: Text('version 1.0  ',style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                  ),),
+                  child: Text(AppConstants.appVersion,style: AppTextStyles.robotoMedium(color: AppColors.black, fontSize: 13.sp, weight: FontWeight.w500),),
                 )
 
               ],
@@ -128,20 +130,19 @@ class _HomeState extends State<Home> {
   Widget _buttons({required String text,required String icon}) {
     return InkWell(
       onTap: () async {
-        if (text == 'Change Password') {
-        //  Navigator.push(context, MyRoute(const ChangePassword()));
+        if (text == AppConstants.changePassword) {
+          Navigator.push(context, MyRoute(const ChangePassword()));
         }
-        if (text == 'Share App') {
-          Share.share(
-              'https://drive.google.com/file/d/1U8ozUzurVEuuXOeo7ToHXDUnLAhY5EGn/view?usp=sharing');
+        if (text == AppConstants.shareApp) {
+          Share.share(AppConstants.shareAppUrl);
         }
-        if (text == 'About Us') {
-          //Navigator.push(context, MyRoute(const AboutUsScreen()));
+        if (text == AppConstants.aboutUs) {
+          Navigator.push(context, MyRoute( WebViewHelper(AppConstants.aboutUsUrl,AppConstants.aboutUs)));
         }
-        if (text == 'Privacy Policy') {
-         // Navigator.push(context, MyRoute(const PrivacyPolicyScreen()));
+        if (text == AppConstants.contactUs) {
+          Navigator.push(context, MyRoute( WebViewHelper(AppConstants.contactUsUrl,AppConstants.contactUs)));
         }
-        if (text == 'Logout') {
+        if (text == AppConstants.logOut) {
           bool s = await onLogOut(context);
           if (s) {
             preferences.remove(AppPrefs.keyId);

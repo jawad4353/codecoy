@@ -1,5 +1,7 @@
 
 
+import 'package:codecoy/main.dart';
+
 class AppConstants{
   static String logIn='Log IN ';
 //Login
@@ -46,4 +48,16 @@ class AppConstants{
   static String verify='Verify';
   static String verifyCode='Verify Code';
   static String enterOtpCodeSent='Enter otp code sent to your phone';
+
+  //home
+  static String contactUs='Contact Us';
+  static String shareApp='Share App';
+  static String aboutUs='About Us';
+  static String changePassword='Change Password';
+  static String logOut='Logout';
+  static String contactUsUrl='https://codecoytechnologies.com/contact/';
+  static String aboutUsUrl='https://codecoytechnologies.com/about/';
+  static String shareAppUrl='https://drive.google.com/file/d/1xlWseTSDabQTf7m6bFieiDdjosFyDt_b/view?usp=sharing';
+  static String appVersion='version $version';
+
 }

@@ -7,7 +7,8 @@ import '../../main.dart';
 import '../../network_config/api_urls.dart';
 import '../../network_config/network_config.dart';
 import '../../utilis/app_preferences.dart';
-import '../../widgets/dialogues/otp_verify_dialogue.dart';
+import '../../view/dialogues/otp_verify_dialogue.dart';
+
 part 'login_event.dart';
 part 'login_state.dart';
 
