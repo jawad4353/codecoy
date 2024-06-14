@@ -97,7 +97,10 @@ class _HomeState extends State<Home> {
 
                  Align(
                   alignment: Alignment.bottomRight,
-                  child: Text(AppConstants.appVersion,style: AppTextStyles.robotoMedium(color: AppColors.black, fontSize: 13.sp, weight: FontWeight.w500),),
+                  child: Padding(
+                    padding:  EdgeInsets.only(right: 20.h),
+                    child: Text(AppConstants.appVersion,style: AppTextStyles.robotoMedium(color: AppColors.grey0E0F10, fontSize: 15.sp, weight: FontWeight.w300),),
+                  ),
                 )
 
               ],
