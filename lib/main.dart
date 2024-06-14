@@ -1,8 +1,10 @@
 import 'dart:async';
 import 'package:codecoy/splash_screen.dart';
 import 'package:codecoy/utilis/app_colors.dart';
+import 'package:codecoy/view_model/web_view_bloc/web_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -33,14 +35,20 @@ class MyApp extends StatelessWidget {
     size=MediaQuery.of(context).size;
     return ScreenUtilInit(
       designSize:  Size(size!.width, size!.height),
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        builder: EasyLoading.init(),
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primary),
-          useMaterial3: true,
+      child: MultiBlocProvider(
+
+        providers: [
+         BlocProvider(create: (context)=>WebViewBloc())
+        ],
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          builder: EasyLoading.init(),
+          theme: ThemeData(
+            colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primary),
+            useMaterial3: true,
+          ),
+          home: const SplashScreen(),
         ),
-        home: const SplashScreen(),
       ),
     );
   }
