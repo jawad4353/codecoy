@@ -1,6 +1,10 @@
+import 'dart:async';
+
 import 'package:codecoy/utilis/app_colors.dart';
 import 'package:codecoy/utilis/app_images.dart';
 import 'package:codecoy/utilis/app_preferences.dart';
+import 'package:codecoy/utilis/app_routes.dart';
+import 'package:codecoy/view/boarding/boarding.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -23,7 +27,7 @@ class _SplashScreenState extends State<SplashScreen> {
      // Timer(const Duration(seconds: 2,),()=>Navigator.pushReplacement(context, MyRoute(const BottomScreen())));
     }
     else{
-    //  Timer(const Duration(seconds: 2,),()=>Navigator.pushReplacement(context, MyRoute(const BoardingScreen())));
+      Timer(const Duration(seconds: 3,),()=>Navigator.pushReplacement(context, MyRoute(const BoardingScreen())));
     }
 
   }
@@ -31,8 +35,16 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.white,
-      body: Center(child: Image.asset(AppImages.imgLogoTransparent,height:1.sh*0.37 ),),
+      //backgroundColor: AppColors.white,
+      body: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+                colors: [AppColors.primary,AppColors.gradient],
+                begin: Alignment.topCenter,
+              end: Alignment.bottomCenter
+            )
+          ),
+          child: Center(child: Image.asset(AppImages.imgLogoTransparent,height:1.sh*0.37 ),)),
     );
   }
 

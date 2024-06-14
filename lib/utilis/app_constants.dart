@@ -15,6 +15,10 @@ class AppConstants{
   static String rememberMe='Remember Me';
   static String forgotPassword='Forgot Password ?';
 
+ //boarding
+  static String boardingTitle='"Unified Teamwork Platform"';
+  static String boardingSubtitle='Enhance productivity with streamlined communication '
+      'and integrated tools for a cohesive work environment.';
   //Register
   static String signUp='Sign Up';
   static String enterRealInformation='Enter your information';
