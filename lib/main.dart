@@ -30,7 +30,7 @@ Future<void> main() async {
       statusBarColor:AppColors.primary
   ));
 }
-
+//free api key    AIzaSyBJ_XlxltqRMHEaqUxKak6LkIb0jt4qRWM
 
 class MyApp extends StatelessWidget {
   Size ? size;
