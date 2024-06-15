@@ -24,7 +24,7 @@ class _LiveTrackingMapState extends State<LiveTracking> {
           CameraPosition(target: _currentPosition, zoom: 15),
         ),
       );
-      setState(() {});
+      //setState(() {});
     });
   }
 

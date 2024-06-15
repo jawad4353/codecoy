@@ -1,11 +1,12 @@
 
 
 import 'package:codecoy/main.dart';
+import 'package:flutter/services.dart';
 
 class AppConstants{
   static String logIn='Log IN ';
 //Login
-  static String login='Log In';
+  static String login='Login';
   static String welcomeBack='Welcome Back';
   static String moveMate='Movemate';
   static String enterUsernamePassword='Enter your Email & Password';
@@ -18,7 +19,9 @@ class AppConstants{
   static String passwordHint='●●●●●●';
   static String rememberMe='Remember Me';
   static String forgotPassword='Forgot Password ?';
-
+  static FilteringTextInputFormatter emailFormatter=FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}'));
+  static FilteringTextInputFormatter passwordFormatter=FilteringTextInputFormatter.allow(RegExp(r'[0-9a-zA-Z.-@_-]'));
+  static FilteringTextInputFormatter nameFormatter=FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z - ]'));
  //boarding
   static String boardingTitle='"Unified Teamwork Platform"';
   static String boardingSubtitle='Boost productivity with clear communication and integrated tools for'

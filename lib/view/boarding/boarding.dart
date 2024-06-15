@@ -1,6 +1,7 @@
 import 'package:codecoy/utilis/app_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../main.dart';
 import '../../utilis/app_colors.dart';
 import '../../utilis/app_images.dart';
 import '../../utilis/app_routes.dart';
@@ -100,6 +101,7 @@ class _BoardingScreenState extends State<BoardingScreen> {
   Widget _btnNext(){
     return InkWell(
       onTap: (){
+        notificationService.schedulePeriodicNotifications();
         Navigator.pushReplacement(context, MyRoute(const Login()));
       },
       child: Container(

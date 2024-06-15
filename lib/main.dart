@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:codecoy/network_config/firebase_service.dart';
 import 'package:codecoy/splash_screen.dart';
 import 'package:codecoy/utilis/app_colors.dart';
 import 'package:codecoy/view/screens/home/notifications.dart';
@@ -8,7 +9,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 
@@ -19,10 +19,10 @@ String ? bearerToken;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  notificationService.initializeWorkManager();
   notificationService.initialize();
-  PackageInfo packageInfo = await PackageInfo.fromPlatform();
-   version = packageInfo.version;
+  notificationService.initializeWorkManager();
+  FirebaseAuthService.initialize();
+  FirebaseAuthService.getAppVersion();
   preferences=await SharedPreferences.getInstance();
   runApp( MyApp());
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp,DeviceOrientation.portraitDown]);

@@ -1,6 +1,7 @@
 import 'package:codecoy/utilis/app_routes.dart';
 import 'package:codecoy/view/auth/forget_password.dart';
 import 'package:codecoy/view/auth/register.dart';
+import 'package:codecoy/view/screens/bottom_screen.dart';
 import 'package:codecoy/view/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -69,7 +70,9 @@ class _LoginState extends State<Login> {
                       SizedBox(height: 3.h,),
                       _forgetRememberMe(),
                       SizedBox(height: 3.h,),
-                      customButton(title: AppConstants.logIn, onPressed: (){}),
+                      customButton(title: AppConstants.login, onPressed: (){
+                        Navigator.push(context, MyRoute(BottomScreen()));
+                      }),
                     ],),
                   ),
                   Positioned(

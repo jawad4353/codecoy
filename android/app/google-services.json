@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "268459879851",
+    "project_id": "codecoy-5d6fa",
+    "storage_bucket": "codecoy-5d6fa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:268459879851:android:5b3867c3ef984e2bb036ee",
+        "android_client_info": {
+          "package_name": "com.example.codecoy"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvucuzUkiSI6_W2uFCUXoYGvwkoYtjK3s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

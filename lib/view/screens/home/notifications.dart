@@ -20,7 +20,7 @@ class NotificationService {
       [
         NotificationChannel(
           channelKey: 'jawad',
-          channelName: 'first420',
+          channelName: 'jawad',
           channelDescription: 'For test purpose',
           defaultColor: AppColors.primary,
           ledColor: AppColors.white,
@@ -47,7 +47,7 @@ class NotificationService {
     });
   }
 
-  static void schedulePeriodicNotifications() {
+   void schedulePeriodicNotifications() {
     Workmanager().registerPeriodicTask(
       "1",
       taskName,
@@ -55,7 +55,7 @@ class NotificationService {
     );
   }
 
-   void initializeWorkManager() {
+    void initializeWorkManager() {
     Workmanager().initialize(
       callbackDispatcher,
       isInDebugMode: true,

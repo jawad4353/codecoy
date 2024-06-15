@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../utilis/app_colors.dart';
 import '../../utilis/app_constants.dart';
@@ -39,11 +40,11 @@ class _RegisterState extends State<Register> {
                       SizedBox(height: 1.sh*0.04,),
                       _header(),
                       SizedBox(height: 30.h,),
-                      customTextField(title:AppConstants.name ,hintText:AppConstants.nameHint ,controller: name,icon: AppImages.iconStudent, isPasswordField: false),
+                      customTextField(title:AppConstants.name ,hintText:AppConstants.nameHint ,controller: name,icon: AppImages.iconStudent, isPasswordField: false,inputFormatter: AppConstants.nameFormatter),
                       SizedBox(height: 20.h,),
-                      customTextField(title:AppConstants.email ,hintText:AppConstants.emailHint ,controller: email,icon: AppImages.iconEmail,isPasswordField: false),
+                      customTextField(title:AppConstants.email ,hintText:AppConstants.emailHint ,controller: email,icon: AppImages.iconEmail,isPasswordField: false,inputFormatter: AppConstants.emailFormatter),
                       SizedBox(height: 20.h,),
-                      customTextField(title:AppConstants.password ,hintText:AppConstants.passwordHint ,controller: password,icon: AppImages.iconPassword, isPasswordField: true),
+                      customTextField(title:AppConstants.password ,hintText:AppConstants.passwordHint ,controller: password,icon: AppImages.iconPassword, isPasswordField: true,inputFormatter: AppConstants.passwordFormatter),
                       SizedBox(height: 40.h,),
                       customButton(title: AppConstants.signUp, onPressed: () {  }),
                     ],
