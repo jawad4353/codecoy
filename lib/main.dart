@@ -41,7 +41,6 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       designSize:  Size(size!.width, size!.height),
       child: MultiBlocProvider(
-
         providers: [
          BlocProvider(create: (context)=>WebViewBloc())
         ],

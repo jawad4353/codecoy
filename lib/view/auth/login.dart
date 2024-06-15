@@ -1,17 +1,18 @@
 import 'package:codecoy/utilis/app_routes.dart';
 import 'package:codecoy/view/auth/forget_password.dart';
 import 'package:codecoy/view/auth/register.dart';
+import 'package:codecoy/view/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:proste_bezier_curve/proste_bezier_curve.dart';
 import '../../main.dart';
 import '../../utilis/app_colors.dart';
 import '../../utilis/app_constants.dart';
 import '../../utilis/app_images.dart';
 import '../../utilis/app_preferences.dart';
 import '../../utilis/app_text_styles.dart';
-import '../screens/bottom_screen.dart';
+import '../widgets/auth_screens_header.dart';
+import '../widgets/custom_footer.dart';
+import '../widgets/custom_text_field.dart';
 
 
 class Login extends StatefulWidget {
@@ -45,7 +46,7 @@ class _LoginState extends State<Login> {
               Stack(
                 children: [
                   Container(height:1.sh*0.92,width: 1.sw,color: AppColors.white,),
-                  _header(),
+                  header(),
                   Positioned(
                     top: 38.h,
                     left: 0,
@@ -62,20 +63,22 @@ class _LoginState extends State<Login> {
                   Padding(
                     padding:  EdgeInsets.only(left: 20.w,right: 20.w,top: 1.sh*0.28),
                     child: Column(children: [
-                      _textField(isPasswordField:false ,title:AppConstants.email ,hintText:AppConstants.emailHint ,controller: _email,icon: AppImages.iconStudent),
+                      customTextField(isPasswordField:false ,title:AppConstants.email ,hintText:AppConstants.emailHint ,controller: _email,icon: AppImages.iconEmail),
                       SizedBox(height: 20.h,),
-                      _textField(isPasswordField: true,title:AppConstants.password ,hintText:'●●●●●●' ,controller: _password,icon: AppImages.iconPassword),
+                      customTextField(isPasswordField: true,title:AppConstants.password ,hintText:AppConstants.passwordHint ,controller: _password,icon: AppImages.iconPassword),
                       SizedBox(height: 3.h,),
                       _forgetRememberMe(),
                       SizedBox(height: 3.h,),
-                      _loginButton(),
+                      customButton(title: AppConstants.logIn, onPressed: (){}),
                     ],),
                   ),
                   Positioned(
                       bottom: 15.h,
                       left: 0,
                       right: 0,
-                      child: _bottom()),
+                      child: customFooter(title: AppConstants.dontHaveAccount, clickableText: AppConstants.signUp, callback: () {
+                        Navigator.push(context, MyRoute(const Register()));
+                      })),
 
                 ],
               ),
@@ -87,150 +90,6 @@ class _LoginState extends State<Login> {
   }
 
 
-  Widget _header(){
-    return ClipPath(
-      clipper: ProsteBezierCurve(
-        position: ClipPosition.bottom,
-        list: [
-          BezierCurveSection(
-            start: const Offset(0, 166),
-            top: Offset(1.sw / 4, 190),
-            end: Offset(1.sw  / 2, 155),
-          ),
-          BezierCurveSection(
-            start: Offset(1.sw  / 2, 25),
-            top: Offset(1.sw / 4 * 3, 100),
-            end: Offset(1.sw , 150),
-          ),
-        ],
-      ),
-      child: Container(
-        height: 1.sh *0.3,
-        width: 1.sw ,
-        color: AppColors.primary,
-        child:  Opacity(opacity: 0.3,
-          child: Image.asset(AppImages.imgPattern,fit: BoxFit.cover,color: AppColors.white,),
-        ),
-      ),
-    );
-  }
-
-  Widget _textField({
-    required TextEditingController controller,
-    required String hintText,
-    required String title,
-    required icon,
-    required bool isPasswordField,
-  }) {
-    return Container(
-      height: 60.h,
-      width: 1.sw,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(7.r),
-        border: Border.all(color: AppColors.greyB2AFAF, width: 1.1),
-      ),
-      child: Row(
-        children: [
-          Container(
-            height: 37.h,
-            margin: EdgeInsets.symmetric(horizontal: 6.w),
-            child: Image.asset(icon, color: AppColors.primary),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 2.w),
-            child: const VerticalDivider(width: 1.2),
-          ),
-          SizedBox(width: 8.w),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  margin: EdgeInsets.symmetric(vertical: 6.h),
-                  child: Text(
-                    title,
-                    style: AppTextStyles.robotoMedium(
-                      color: AppColors.grey0E0F10,
-                      fontSize: 14.sp,
-                      weight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 20.h,
-                  // Remove the width property
-                  child: TextField(
-                    onChanged: (a) {},
-                    controller: controller,
-                    cursorColor: AppColors.primary,
-                    cursorWidth: 3,
-                    cursorHeight: 16,
-                    obscureText: isPasswordField ? hidePassword : false,
-                    style: AppTextStyles.robotoMedium(
-                      color: AppColors.black191B32,
-                      fontSize: 14.sp,
-                      weight: FontWeight.w400,
-                    ),
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      suffixIcon: isPasswordField
-                          ? InkWell(
-                        onTap: () {
-                          setState(() {
-                            hidePassword = !hidePassword;
-                          });
-                        },
-                        child: Image.asset(
-                          hidePassword
-                              ? AppImages.iconVisibility
-                              : AppImages.iconVisibilityOff,
-                          color: AppColors.primary,
-                          height: 50,
-                          width: 50,
-                        ),
-                      )
-                          : null,
-                      contentPadding: EdgeInsets.only(bottom: 12.h),
-                      hintText: hintText,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-
-
-  Widget _loginButton(){
-    return  SizedBox(
-      height: 48.h,
-      width: double.maxFinite,
-      child: ElevatedButton(
-          style:ElevatedButton.styleFrom(
-              backgroundColor: AppColors.primary,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(6.r)
-              )
-          ) ,
-          onPressed: (){
-            Navigator.push(context, MyRoute(const BottomScreen()));
-            if(_email.text.replaceAll(' ', '').isEmpty){
-              EasyLoading.showInfo('Email required !');
-              return;
-            }
-            if(_password.text.replaceAll(' ', '').isEmpty){
-              EasyLoading.showInfo('Password required !');
-              return;
-            }
-
-
-          }, child:Text(AppConstants.login,style: AppTextStyles.robotoMedium(color: AppColors.black, fontSize: 16.sp, weight: FontWeight.w600),) ),
-    );
-  }
 
   Widget _forgetRememberMe(){
     return Row(children: [
@@ -252,17 +111,5 @@ class _LoginState extends State<Login> {
     ],);
   }
 
-  Widget _bottom(){
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(AppConstants.dontHaveAccount,style: AppTextStyles.robotoMedium(color: AppColors.black191B32, fontSize: 14.sp, weight: FontWeight.w500),),
-        InkWell(
-          onTap: (){
-              Navigator.push(context, MyRoute(const Register()));
-          },
-          child:Text(AppConstants.signUp,style:AppTextStyles.robotoMedium(color: AppColors.primary, fontSize: 16.sp, weight: FontWeight.w600) ,),
-        )
-      ],);
-  }
+
 }
