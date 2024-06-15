@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:codecoy/splash_screen.dart';
 import 'package:codecoy/utilis/app_colors.dart';
+import 'package:codecoy/view/screens/home/notifications.dart';
 import 'package:codecoy/view_model/web_view_bloc/web_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -10,12 +11,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+
 late SharedPreferences preferences;
 String ? version;
+NotificationService notificationService = NotificationService();
 String ? bearerToken;
-Future<void> main() async {
 
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  notificationService.initializeWorkManager();
+  notificationService.initialize();
   PackageInfo packageInfo = await PackageInfo.fromPlatform();
    version = packageInfo.version;
   preferences=await SharedPreferences.getInstance();
@@ -24,8 +29,8 @@ Future<void> main() async {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor:AppColors.primary
   ));
-
 }
+
 
 class MyApp extends StatelessWidget {
   Size ? size;
