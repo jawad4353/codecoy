@@ -23,24 +23,28 @@ class _BoardingScreenState extends State<BoardingScreen> {
     return SafeArea(
       child: Scaffold(
         backgroundColor:  AppColors.primary,
-        body: Stack(children: [
-          SizedBox(height: 1.sh,width: 1.sw,),
+        body: ListView(
+          children: [
+            Stack(children: [
+              SizedBox(height: 1.sh*0.98,width: 1.sw,),
 
-          Positioned(
-              top: 1.sh*0.04,
-              left: 0,
-              right: 0,
-              child: body()),
+              Positioned(
+                  top: 1.sh*0.04,
+                  left: 0,
+                  right: 0,
+                  child: body()),
 
-          Positioned(
-              bottom: 35.h,
-              left: 35.w,
-              child: _btnSkip()),
-          Positioned(
-              bottom: 35.h,
-              right: 35.w,
-              child: _btnNext())
-        ],),
+              Positioned(
+                  bottom: 35.h,
+                  left: 35.w,
+                  child: _btnSkip()),
+              Positioned(
+                  bottom: 35.h,
+                  right: 35.w,
+                  child: _btnNext())
+            ],),
+          ],
+        ),
       ),
     );
   }

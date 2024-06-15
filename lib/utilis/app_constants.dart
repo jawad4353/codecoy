@@ -19,8 +19,8 @@ class AppConstants{
   static String passwordHint='●●●●●●';
   static String rememberMe='Remember Me';
   static String forgotPassword='Forgot Password ?';
-  static FilteringTextInputFormatter emailFormatter=FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}'));
-  static FilteringTextInputFormatter passwordFormatter=FilteringTextInputFormatter.allow(RegExp(r'[0-9a-zA-Z.-@_-]'));
+  static FilteringTextInputFormatter emailFormatter=passwordFormatter;
+  static FilteringTextInputFormatter passwordFormatter= FilteringTextInputFormatter.allow(RegExp(r'^[a-zA-Z0-9_\-@.]*$'));
   static FilteringTextInputFormatter nameFormatter=FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z - ]'));
  //boarding
   static String boardingTitle='"Unified Teamwork Platform"';
@@ -30,6 +30,7 @@ class AppConstants{
   static String next='Next';
   //Register
   static String signUp='Sign Up';
+  static String code='Code';
   static String enterRealInformation='Enter your information';
 
   static String confirmPassword='Confirm Password';
@@ -50,7 +51,7 @@ class AppConstants{
   //otp verify dialogue
   static String verify='Verify';
   static String verifyCode='Verify Code';
-  static String enterOtpCodeSent='Enter otp code sent to your phone';
+  static String enterOtpCodeSent='Enter otp code ';
 
   //home
   static String contactUs='Contact Us';

@@ -3,6 +3,7 @@ import 'package:codecoy/network_config/firebase_service.dart';
 import 'package:codecoy/splash_screen.dart';
 import 'package:codecoy/utilis/app_colors.dart';
 import 'package:codecoy/view/screens/home/notifications.dart';
+import 'package:codecoy/view_model/register_bloc/register_bloc.dart';
 import 'package:codecoy/view_model/web_view_bloc/web_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -42,7 +43,9 @@ class MyApp extends StatelessWidget {
       designSize:  Size(size!.width, size!.height),
       child: MultiBlocProvider(
         providers: [
-         BlocProvider(create: (context)=>WebViewBloc())
+         BlocProvider(create: (context)=>WebViewBloc()),
+          BlocProvider(create: (context)=>RegisterBloc())
+
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,

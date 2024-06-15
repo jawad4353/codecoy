@@ -4,6 +4,7 @@ import 'package:codecoy/utilis/app_images.dart';
 import 'package:codecoy/utilis/app_preferences.dart';
 import 'package:codecoy/utilis/app_routes.dart';
 import 'package:codecoy/view/boarding/boarding.dart';
+import 'package:codecoy/view/screens/bottom_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,8 +23,8 @@ class _SplashScreenState extends State<SplashScreen> {
   initState(){
     customizeEasyLoading();
     super.initState();
-    if(preferences.getString(AppPrefs.keyId)!=null){
-     // Timer(const Duration(seconds: 2,),()=>Navigator.pushReplacement(context, MyRoute(const BottomScreen())));
+    if(preferences.getBool(AppPrefs.keyIsLogin)==true){
+      Timer(const Duration(seconds: 2,),()=>Navigator.pushReplacement(context, MyRoute(const BottomScreen())));
     }
     else{
       Timer(const Duration(seconds: 3,),()=>Navigator.pushReplacement(context, MyRoute(const BoardingScreen())));

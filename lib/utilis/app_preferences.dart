@@ -4,6 +4,7 @@ class AppPrefs{
   static String keyEmail='keyEmail';
   static String keyName='Name';
   static String keyPassword='keyPassword';
+  static String keyOtp='keyOtp';
   static String keyRememberMe='keyRememberMe';
-
+  static String keyIsLogin='keyIsLogin';
 }

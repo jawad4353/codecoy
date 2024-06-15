@@ -3,9 +3,11 @@ import 'package:codecoy/view/auth/forget_password.dart';
 import 'package:codecoy/view/auth/register.dart';
 import 'package:codecoy/view/screens/bottom_screen.dart';
 import 'package:codecoy/view/widgets/custom_button.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../main.dart';
+import '../../network_config/firebase_service.dart';
 import '../../utilis/app_colors.dart';
 import '../../utilis/app_constants.dart';
 import '../../utilis/app_images.dart';
@@ -70,7 +72,7 @@ class _LoginState extends State<Login> {
                       SizedBox(height: 3.h,),
                       _forgetRememberMe(),
                       SizedBox(height: 3.h,),
-                      customButton(title: AppConstants.login, onPressed: (){
+                      customButton(title: AppConstants.login, onPressed: () async {
                         Navigator.push(context, MyRoute(BottomScreen()));
                       }),
                     ],),
