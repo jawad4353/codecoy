@@ -10,6 +10,15 @@ class LoginInitial extends LoginState {
 }
 
 
+class LoginLodingState extends LoginState {
+  @override
+  List<Object> get props => [];
+}
+
+class LoginLodedState extends LoginState {
+  @override
+  List<Object> get props => [];
+}
 
 class LoginApiErrorState extends LoginState{
   final String errorMessage;

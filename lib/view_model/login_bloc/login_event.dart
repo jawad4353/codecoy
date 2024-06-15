@@ -6,10 +6,10 @@ abstract class LoginEvent extends Equatable {
 
 class LoginApiEvent extends LoginEvent{
   final BuildContext context;
-  final Map map;
-  final bool fromSplash;
+  final String email;
+  final String password;
   final bool rememberMe;
-  const LoginApiEvent( this.map, this.context, this.fromSplash,this.rememberMe);
+  const LoginApiEvent( this.email, this.password, this.context,this.rememberMe);
   @override
   List<Object?> get props => [];
 }

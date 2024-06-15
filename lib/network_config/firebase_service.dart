@@ -132,8 +132,7 @@ class FirebaseAuthService {
 
 
 
-  Future<User?> signInWithEmailAndPassword(String email,
-      String password) async {
+  static Future<User?> signInWithEmailAndPassword({required String email,required String password}) async {
     try {
       EasyLoading.show(status: 'Signing in...');
       UserCredential userCredential = await _auth.signInWithEmailAndPassword(
