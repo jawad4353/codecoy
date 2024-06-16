@@ -45,11 +45,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       }
 
 
-      if(event is RememberMeEvent){
-        emit(RememberMeState(event.rememberMe));
-        preferences.setBool(AppPrefs.keyRememberMe, event.rememberMe);
-      }
-
     });
   }
 }

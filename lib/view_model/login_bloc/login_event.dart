@@ -22,10 +22,3 @@ class ForgetPasswordEvent extends LoginEvent{
   List<Object?> get props => [email,context];
 }
 
-class RememberMeEvent extends LoginEvent{
-  final bool rememberMe;
-  const RememberMeEvent(this.rememberMe,);
-  @override
-  List<Object?> get props => [rememberMe];
-
-}

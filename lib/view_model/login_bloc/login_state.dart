@@ -42,10 +42,3 @@ class ForgotPasswordErrorState extends LoginState {
   List<Object> get props => [];
 }
 
-class RememberMeState extends LoginState {
-  final bool rememberMe;
- const RememberMeState(this.rememberMe);
-  @override
-  List<Object> get props => [rememberMe];
-}
-

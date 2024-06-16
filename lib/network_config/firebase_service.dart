@@ -52,7 +52,7 @@ class FirebaseAuthService {
   }) async {
     UserCredential userCredential;
     try {
-      EasyLoading.show(status: 'Signing in...');
+      EasyLoading.show(status: 'Logging in...');
        userCredential = await _auth.signInWithEmailAndPassword(
         email: email,
         password: password,
@@ -60,7 +60,7 @@ class FirebaseAuthService {
 
       if (userCredential.user!=null) {
        if( userCredential.user!.emailVerified){
-         EasyLoading.showSuccess('Sign-in successful!');
+         EasyLoading.showSuccess('Log-in successful!');
          return userCredential.user;
        }else{
          await userCredential.user!.sendEmailVerification();

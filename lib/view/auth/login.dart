@@ -28,12 +28,10 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   final TextEditingController _email= TextEditingController();
   final TextEditingController _password= TextEditingController();
-  bool rememberMe=true;
 
   @override
   initState(){
     super.initState();
-    context.read<LoginBloc>().add(RememberMeEvent(rememberMe));
     if(preferences.getBool(AppPrefs.keyRememberMe)==true){
       _email.text=preferences.getString(AppPrefs.keyEmail)??"";
       _password.text=preferences.getString(AppPrefs.keyPassword)??"";
@@ -118,21 +116,7 @@ class _LoginState extends State<Login> {
 
   Widget _forgetRememberMe(){
     return Row(children: [
-      BlocBuilder<LoginBloc,LoginState>(
-        builder: (context,state) {
-          if(state is RememberMeState){
-            return Checkbox.adaptive(
-                fillColor: MaterialStateProperty.resolveWith((states) => AppColors.primary),
-                activeColor: AppColors.white,
-                overlayColor: MaterialStateProperty.resolveWith((states) => AppColors.white) ,
-                value: state.rememberMe, onChanged: (a){
-              context.read<LoginBloc>().add(RememberMeEvent(!state.rememberMe));
-
-            });
-          }
-         return const SizedBox();
-        }
-      ),
+      const CustomCheckbox(),
       Text(AppConstants.rememberMe,style: AppTextStyles.robotoMedium(color: AppColors.black191B32, fontSize: 14.sp, weight: FontWeight.w500)),
       const Spacer(),
       TextButton(onPressed: (){
@@ -142,4 +126,31 @@ class _LoginState extends State<Login> {
   }
 
 
+
+}
+
+class CustomCheckbox extends StatefulWidget {
+  const CustomCheckbox({super.key});
+  @override
+  _CustomCheckboxState createState() => _CustomCheckboxState();
+}
+
+class _CustomCheckboxState extends State<CustomCheckbox> {
+  bool _value = true;
+
+  @override
+  Widget build(BuildContext context) {
+    return Checkbox.adaptive(
+      fillColor: MaterialStateProperty.resolveWith((states) => AppColors.primary),
+      activeColor: AppColors.white,
+      overlayColor: MaterialStateProperty.resolveWith((states) => AppColors.white),
+      value: _value,
+      onChanged: (a){
+        setState(() {
+          _value = a ?? false;
+          preferences.setBool(AppPrefs.keyRememberMe, _value);
+        });
+      },
+    );
+  }
 }
