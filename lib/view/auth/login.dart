@@ -32,10 +32,12 @@ class _LoginState extends State<Login> {
   @override
   initState(){
     super.initState();
+
     if(preferences.getBool(AppPrefs.keyRememberMe)==true){
       _email.text=preferences.getString(AppPrefs.keyEmail)??"";
       _password.text=preferences.getString(AppPrefs.keyPassword)??"";
     }
+    preferences.setBool(AppPrefs.keyRememberMe, false);
   }
 
   @override
@@ -136,7 +138,7 @@ class CustomCheckbox extends StatefulWidget {
 }
 
 class _CustomCheckboxState extends State<CustomCheckbox> {
-  bool _value = true;
+  bool _value = false;
 
   @override
   Widget build(BuildContext context) {
@@ -146,9 +148,10 @@ class _CustomCheckboxState extends State<CustomCheckbox> {
       overlayColor: MaterialStateProperty.resolveWith((states) => AppColors.white),
       value: _value,
       onChanged: (a){
+        preferences.setBool(AppPrefs.keyRememberMe, a??false);
         setState(() {
           _value = a ?? false;
-          preferences.setBool(AppPrefs.keyRememberMe, _value);
+
         });
       },
     );

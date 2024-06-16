@@ -61,7 +61,9 @@ class AppConstants{
   static String profile='Profile';
   static String designation='Designation';
   static String userID='User ID';
+  static String profilePicture='Profile Picture';
   static String registrationDate='Registration Date';
+
   //drawer
   static String areYouSureLogout='Are you sure you want to logout  ?';
   static String areYouSureExit=' Do you want to exit app ?';

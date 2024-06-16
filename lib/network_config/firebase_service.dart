@@ -1,7 +1,10 @@
+import 'dart:typed_data';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:codecoy/utilis/app_preferences.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import '../main.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -9,6 +12,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 class FirebaseAuthService {
   static final FirebaseAuth _auth = FirebaseAuth.instance;
   static final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
 
   static Future<User?> registerWithEmailAndPassword({required String name,required String email
     ,required String password,required String designation }) async {
@@ -99,6 +103,25 @@ class FirebaseAuthService {
   }
 
 
+  static Future<bool> uploadPictureBytes(Uint8List pictureBytes,mimeType) async {
+    try {
+      print('Mime type : ${mimeType}');
+      EasyLoading.show(status: 'Uploading...');
+      Reference storageReference = FirebaseStorage.instance.ref().child('profiles/${preferences.getString(AppPrefs.keyEmail)}.png');
+      SettableMetadata metadata = SettableMetadata(contentType: mimeType);
+      UploadTask uploadTask = storageReference.putData(pictureBytes);
+      await uploadTask;
+      String downloadUrl = await storageReference.getDownloadURL();
+      await _firestore.collection('users').doc(preferences.getString(AppPrefs.keyEmail)).update({'image_url':downloadUrl});
+      EasyLoading.showSuccess('Upload successful!');
+      return true;
+    } catch (e) {
+      EasyLoading.showError(e.toString());
+      return false;
+    } finally {
+      EasyLoading.dismiss();
+    }
+  }
 
 
   static Future<bool> signOut() async {

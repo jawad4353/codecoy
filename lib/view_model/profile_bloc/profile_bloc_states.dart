@@ -17,8 +17,10 @@ class ProfileLoadingState extends ProfileStates {
 
 
 class ProfileLoadedState extends ProfileStates {
+  final UserModel myModel;
+  const ProfileLoadedState(this.myModel);
   @override
-  List<Object> get props => [];
+  List<Object> get props => [myModel];
 }
 
 class ProfileErrorState extends ProfileStates {

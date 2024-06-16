@@ -1,9 +1,11 @@
 import 'dart:convert';
-
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:codecoy/data/hive-helper.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:hive/hive.dart';
 import '../../main.dart';
 import '../../model/user_model.dart';
 import '../../utilis/app_preferences.dart';
@@ -18,17 +20,27 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileStates> {
         try{
           DocumentSnapshot<Map<String, dynamic>> profileData= await FirebaseFirestore.instance.collection('users').doc(preferences.getString(AppPrefs.keyEmail)).get();
           if(profileData.exists){
-            UserModel ? myModel=UserModel.fromJson(json.decode(profileData.data().toString()??''));
-            print(myModel.name);
-            EasyLoading.show(status: myModel.name);
-
+            String encodedData=json.encode(profileData.data());
+            Box ? box=await HiveHelper.openBox(name: 'users');
+                   await box?.put('users', encodedData);
+          emit(ProfileLoadedState(UserModel.fromJson(json.decode(encodedData))));
+          }
+          else{
+            emit(ProfileErrorState());
           }
 
         }
         catch(e){
+          Box ? box=await HiveHelper.openBox(name: 'users');
+          if(box?.isNotEmpty??false){
+            emit(ProfileLoadedState(UserModel.fromJson(json.decode(box!.values.toString()))));
+            return;
+          }
+          else{
+            emit(ProfileErrorState());
+          }
           EasyLoading.showError(e.toString());
         }
-
       }
 
     });
