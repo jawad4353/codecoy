@@ -28,11 +28,12 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   final TextEditingController _email= TextEditingController();
   final TextEditingController _password= TextEditingController();
-  bool rememberMe=true,hidePassword=true;
+  bool rememberMe=true;
 
   @override
   initState(){
     super.initState();
+    context.read<LoginBloc>().add(RememberMeEvent(rememberMe));
     if(preferences.getBool(AppPrefs.keyRememberMe)==true){
       _email.text=preferences.getString(AppPrefs.keyEmail)??"";
       _password.text=preferences.getString(AppPrefs.keyPassword)??"";
@@ -48,7 +49,7 @@ class _LoginState extends State<Login> {
             children: [
               Stack(
                 children: [
-                  Container(height:1.sh*0.92,width: 1.sw,color: AppColors.white,),
+                  Container(height:1.sh*0.97,width: 1.sw,color: AppColors.white,),
                   header(),
                   Positioned(
                     top: 38.h,
@@ -90,14 +91,14 @@ class _LoginState extends State<Login> {
                                 EasyLoading.showInfo('Password required');
                                 return;
                               }
-                              context.read<LoginBloc>().add(LoginApiEvent(_email.text,_password.text, context, rememberMe));
+                              context.read<LoginBloc>().add(LoginApiEvent(_email.text,_password.text, context));
                             });
                           }
                       ),
                     ],),
                   ),
                   Positioned(
-                      bottom: 15.h,
+                      bottom: 40.h,
                       left: 0,
                       right: 0,
                       child: customFooter(title: AppConstants.dontHaveAccount, clickableText: AppConstants.signUp, callback: () {
@@ -117,7 +118,21 @@ class _LoginState extends State<Login> {
 
   Widget _forgetRememberMe(){
     return Row(children: [
+      BlocBuilder<LoginBloc,LoginState>(
+        builder: (context,state) {
+          if(state is RememberMeState){
+            return Checkbox.adaptive(
+                fillColor: MaterialStateProperty.resolveWith((states) => AppColors.primary),
+                activeColor: AppColors.white,
+                overlayColor: MaterialStateProperty.resolveWith((states) => AppColors.white) ,
+                value: state.rememberMe, onChanged: (a){
+              context.read<LoginBloc>().add(RememberMeEvent(!state.rememberMe));
 
+            });
+          }
+         return const SizedBox();
+        }
+      ),
       Text(AppConstants.rememberMe,style: AppTextStyles.robotoMedium(color: AppColors.black191B32, fontSize: 14.sp, weight: FontWeight.w500)),
       const Spacer(),
       TextButton(onPressed: (){

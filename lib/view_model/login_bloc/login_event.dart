@@ -8,10 +8,9 @@ class LoginApiEvent extends LoginEvent{
   final BuildContext context;
   final String email;
   final String password;
-  final bool rememberMe;
-  const LoginApiEvent( this.email, this.password, this.context,this.rememberMe);
+  const LoginApiEvent( this.email, this.password, this.context);
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [context,email,password];
 }
 
 
@@ -20,6 +19,13 @@ class ForgetPasswordEvent extends LoginEvent{
   final BuildContext context;
   const ForgetPasswordEvent(this.email,this.context);
   @override
-  List<Object?> get props => throw UnimplementedError();
+  List<Object?> get props => [email,context];
+}
+
+class RememberMeEvent extends LoginEvent{
+  final bool rememberMe;
+  const RememberMeEvent(this.rememberMe,);
+  @override
+  List<Object?> get props => [rememberMe];
 
 }

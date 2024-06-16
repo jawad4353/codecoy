@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:codecoy/utilis/app_preferences.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -78,9 +79,18 @@ class FirebaseAuthService {
 
   static Future<bool> resetPassword(String email) async {
     try {
-       await _auth.sendPasswordResetEmail(email: email);
-       EasyLoading.showSuccess('Password reset link sent');
-       return true;
+      EasyLoading.show(status: 'progressing..');
+      DocumentSnapshot<Map<String, dynamic>> document = await _firestore.collection('users').doc(email).get();
+      if(document.exists){
+        await _auth.sendPasswordResetEmail(email: email);
+        EasyLoading.showSuccess('Password reset link sent');
+        return true;
+      }
+      else{
+        EasyLoading.showInfo('Email not registered');
+        return false;
+      }
+
     } catch (e) {
      EasyLoading.showError(e.toString().split(']')[1]);
      return false;
@@ -90,13 +100,22 @@ class FirebaseAuthService {
 
 
 
-  Future<void> signOut() async {
+  static Future<bool> signOut() async {
     try {
-      EasyLoading.show(status: 'Signing out...');
+      EasyLoading.show(status: 'Logging out...');
       await _auth.signOut();
-      EasyLoading.showSuccess('Sign-out successful!');
+      if(preferences.getBool(AppPrefs.keyRememberMe)==true)
+        {
+          preferences.remove(AppPrefs.keyIsLogin);
+          preferences.remove(AppPrefs.keyName);
+          preferences.remove(AppPrefs.keyId);
+        }
+      else{preferences.clear();}
+      EasyLoading.showSuccess('Log-out successful!');
+      return true;
     } catch (e) {
-      EasyLoading.showError('Sign-out failed: $e');
+      EasyLoading.showError(e.toString().split(']')[1]);
+      return false;
     } finally {
       EasyLoading.dismiss();
     }

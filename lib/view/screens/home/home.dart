@@ -1,3 +1,4 @@
+import 'package:codecoy/network_config/firebase_service.dart';
 import 'package:codecoy/utilis/app_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -144,13 +145,11 @@ class _HomeState extends State<Home> {
         if (text == AppConstants.logOut) {
           bool s = await onLogOut(context);
           if (s) {
-            preferences.remove(AppPrefs.keyId);
-            if (preferences.getBool(AppPrefs.keyRememberMe) != true) {
-              preferences.remove(AppPrefs.keyEmail);
-              preferences.remove(AppPrefs.keyPassword);
+            bool logout= await FirebaseAuthService.signOut();
+            if(logout){
+              Navigator.pushReplacement(context, MyRoute(const Login()));
             }
 
-            Navigator.pushReplacement(context, MyRoute(const Login()));
           }
         }
       },

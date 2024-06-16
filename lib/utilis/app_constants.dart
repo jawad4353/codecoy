@@ -40,7 +40,7 @@ class AppConstants{
 
 //get otp forgetpassword screen
   static String forgetPassword='Forget Password';
-  static String enterEmail='Enter email to get otp';
+  static String enterEmail='Enter email to get reset link';
   static String getLink='Get Email Link';
 
   //home
@@ -53,4 +53,9 @@ class AppConstants{
   static String shareAppUrl='https://drive.google.com/file/d/1xlWseTSDabQTf7m6bFieiDdjosFyDt_b/view?usp=sharing';
   static String appVersion='version $version';
 
+  static String areYouSureLogout='Are you sure you want to logout  ?';
+  static String areYouSureExit=' Do you want to exit app ?';
+  static String exit='Exit';
+  static String logout='Logout';
+  static String cancel='Cancel';
 }

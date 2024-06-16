@@ -1,3 +1,4 @@
+import 'package:codecoy/utilis/app_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../utilis/app_colors.dart';
@@ -8,7 +9,7 @@ Future<bool> onExit(context)async{
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
     title:  Padding(
       padding:  EdgeInsets.symmetric(vertical: 10.h),
-      child: Text('Do you want to exit app ?',style:AppTextStyles.robotoMedium(
+      child: Text(AppConstants.areYouSureExit,style:AppTextStyles.robotoMedium(
         color: AppColors.black191B32,
         fontSize: 19.sp,
         weight: FontWeight.w400,
@@ -22,7 +23,7 @@ Future<bool> onExit(context)async{
           style: ElevatedButton.styleFrom(backgroundColor: AppColors.primary,
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3))
           ),
-          child:  Text('Exit',style:AppTextStyles.robotoMedium(
+          child:  Text(AppConstants.exit,style:AppTextStyles.robotoMedium(
             color: AppColors.white,
             fontSize: 14.sp,
             weight: FontWeight.w400,
@@ -37,7 +38,7 @@ Future<bool> onExit(context)async{
           ),
           onPressed: () => Navigator.of(context).pop(false),
 
-          child:   Text('Cancel',style:AppTextStyles.robotoMedium(
+          child:   Text(AppConstants.cancel,style:AppTextStyles.robotoMedium(
             color: AppColors.white,
             fontSize: 14.sp,
             weight: FontWeight.w400,

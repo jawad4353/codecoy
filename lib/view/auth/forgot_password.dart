@@ -40,7 +40,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Text(AppConstants.forgotPassword,style: AppTextStyles.robotoBold(color: AppColors.white, fontSize: 30.sp, weight: FontWeight.w700),),
+                        Text(AppConstants.forgetPassword,style: AppTextStyles.robotoBold(color: AppColors.white, fontSize: 30.sp, weight: FontWeight.w700),),
                         SizedBox(height: 5.h,),
                         Text(AppConstants.enterEmail,style: AppTextStyles.robotoMedium(color: AppColors.white, fontSize: 14.sp, weight: FontWeight.w500),),
 
