@@ -24,19 +24,3 @@ class RegisterErrorState extends RegisterUserState {
   @override
   List<Object> get props => [];
 }
-
-
-class RegisterVerifyingState extends RegisterUserState {
-  @override
-  List<Object> get props => [];
-}
-
-class RegisterVerifiedState extends RegisterUserState {
-  @override
-  List<Object> get props => [];
-}
-
-class RegisterVerifiedErrorState extends RegisterUserState {
-  @override
-  List<Object> get props => [];
-}

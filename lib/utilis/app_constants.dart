@@ -40,24 +40,13 @@ class AppConstants{
 
 //get otp forgetpassword screen
   static String forgetPassword='Forget Password';
-  static String enterPhoneNumber='Enter email to get otp';
-  static String getCode='Get Code';
-
-  //reset password
-  static String resetPassword='Reset Password';
-  static String enterNewPassword='Enter new password ';
-  static String newPassword='New Password';
-
-  //otp verify dialogue
-  static String verify='Verify';
-  static String verifyCode='Verify Code';
-  static String enterOtpCodeSent='Enter otp code ';
+  static String enterEmail='Enter email to get otp';
+  static String getLink='Get Email Link';
 
   //home
   static String contactUs='Contact Us';
   static String shareApp='Share App';
   static String aboutUs='About Us';
-  static String changePassword='Change Password';
   static String logOut='Logout';
   static String contactUsUrl='https://codecoytechnologies.com/contact/';
   static String aboutUsUrl='https://codecoytechnologies.com/about/';

@@ -15,9 +15,3 @@ class RegisterUserEventApi extends RegisterUserEvent{
 }
 
 
-class RegisterVerifyEmailEvent extends RegisterUserEvent{
-  final BuildContext context;
-  const RegisterVerifyEmailEvent(this.context);
-  @override
-  List<Object?> get props => [];
-}

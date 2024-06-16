@@ -8,10 +8,8 @@ import '../../../utilis/app_images.dart';
 import '../../../utilis/app_preferences.dart';
 import '../../../utilis/app_routes.dart';
 import '../../../utilis/app_text_styles.dart';
-
 import '../../auth/login.dart';
 import '../../dialogues/logout.dart';
-import '../more/change_password.dart';
 import '../more/web_view_helper.dart';
 
 
@@ -89,7 +87,7 @@ class _HomeState extends State<Home> {
                       ),
                     ),
                     accountName:  Text(preferences.getString(AppPrefs.keyId)??"",style:AppTextStyles.robotoMedium(color: AppColors.white, fontSize: 18.sp, weight: FontWeight.w600)), accountEmail:  Text(preferences.getString(AppPrefs.keyEmail)??"",style: AppTextStyles.robotoMedium(color: AppColors.white, fontSize: 16.sp, weight: FontWeight.w400),)),
-                _buttons(icon: AppImages.iconPassword,text: AppConstants.changePassword),
+
                 _buttons(icon: AppImages.iconShareApp,text: AppConstants.shareApp),
                 _buttons(icon: AppImages.iconAboutUs,text: AppConstants.aboutUs),
                 _buttons(icon:AppImages.iconPrivacyPolicy,text:AppConstants.contactUs),
@@ -133,9 +131,7 @@ class _HomeState extends State<Home> {
   Widget _buttons({required String text,required String icon}) {
     return InkWell(
       onTap: () async {
-        if (text == AppConstants.changePassword) {
-          Navigator.push(context, MyRoute(const ChangePassword()));
-        }
+
         if (text == AppConstants.shareApp) {
           Share.share(AppConstants.shareAppUrl);
         }

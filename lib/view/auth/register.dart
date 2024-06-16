@@ -51,39 +51,39 @@ class _RegisterState extends State<Register> {
                       customTextField(title:AppConstants.password ,hintText:AppConstants.passwordHint ,controller: password,icon: AppImages.iconPassword, isPasswordField: true,keyboardType:TextInputType.visiblePassword),
                       SizedBox(height: 40.h,),
                       BlocBuilder<RegisterBloc,RegisterUserState>(
-                        builder: (context,state) {
-                          if(state is RegisterLoadingState){
-                            return customButton(title: AppConstants.signUp, disabled: true, onPressed: () { });
-                          }
+                          builder: (context,state) {
+                            if(state is RegisterLoadingState){
+                              return customButton(title: AppConstants.signUp, disabled: true, onPressed: () { });
+                            }
 
-                          return customButton(title: AppConstants.signUp, onPressed: () {
-                            if(name.text.replaceAll(' ', '').isEmpty){
-                              EasyLoading.showInfo('Name required');
-                              return;
-                            }
-                            if(name.text.replaceAll(' ', '').length<2){
-                              EasyLoading.showInfo('Invalid name');
-                              return;
-                            }
-                            if(email.text.replaceAll(' ', '').isEmpty){
-                              EasyLoading.showInfo('Email required');
-                              return;
-                            }
-                            if(email.text.replaceAll(' ', '').length<5){
-                              EasyLoading.showInfo('Invalid email');
-                              return;
-                            }
-                            if(password.text.replaceAll(' ', '').isEmpty){
-                              EasyLoading.showInfo('Password required');
-                              return;
-                            }
-                            if(password.text.replaceAll(' ', '').length<8){
-                              EasyLoading.showInfo('Password must have eight characters');
-                              return;
-                            }
-                            context.read<RegisterBloc>().add(RegisterUserEventApi(email.text,context,name.text,password.text));
-                          });
-                        }
+                            return customButton(title: AppConstants.signUp, onPressed: () {
+                              if(name.text.replaceAll(' ', '').isEmpty){
+                                EasyLoading.showInfo('Name required');
+                                return;
+                              }
+                              if(name.text.replaceAll(' ', '').length<2){
+                                EasyLoading.showInfo('Invalid name');
+                                return;
+                              }
+                              if(email.text.replaceAll(' ', '').isEmpty){
+                                EasyLoading.showInfo('Email required');
+                                return;
+                              }
+                              if(email.text.replaceAll(' ', '').length<5){
+                                EasyLoading.showInfo('Invalid email');
+                                return;
+                              }
+                              if(password.text.replaceAll(' ', '').isEmpty){
+                                EasyLoading.showInfo('Password required');
+                                return;
+                              }
+                              if(password.text.replaceAll(' ', '').length<8){
+                                EasyLoading.showInfo('Password must have eight characters');
+                                return;
+                              }
+                              context.read<RegisterBloc>().add(RegisterUserEventApi(email.text,context,name.text,password.text));
+                            });
+                          }
                       ),
                     ],
                   ),

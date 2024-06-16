@@ -1,15 +1,12 @@
 import 'package:codecoy/utilis/app_routes.dart';
-import 'package:codecoy/view/auth/forget_password.dart';
+import 'package:codecoy/view/auth/forgot_password.dart';
 import 'package:codecoy/view/auth/register.dart';
-import 'package:codecoy/view/screens/bottom_screen.dart';
 import 'package:codecoy/view/widgets/custom_button.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../main.dart';
-import '../../network_config/firebase_service.dart';
 import '../../utilis/app_colors.dart';
 import '../../utilis/app_constants.dart';
 import '../../utilis/app_images.dart';
@@ -76,26 +73,26 @@ class _LoginState extends State<Login> {
                       _forgetRememberMe(),
                       SizedBox(height: 3.h,),
                       BlocBuilder<LoginBloc,LoginState>(
-                        builder: (context,state) {
-                          if(state is LoginLodedState){
-                            return customButton(title: AppConstants.login, onPressed: (){},disabled: true);
-                                }
-                          return customButton(title: AppConstants.login, onPressed: () async {
-                            if(_email.text.replaceAll(' ', '').isEmpty){
-                              EasyLoading.showInfo('Email required');
-                              return;
+                          builder: (context,state) {
+                            if(state is LoginLoadingState){
+                              return customButton(title: AppConstants.login, onPressed: (){},disabled: true);
                             }
-                            if(_email.text.replaceAll(' ', '').length<5){
-                              EasyLoading.showInfo('Invalid email');
-                              return;
-                            }
-                            if(_password.text.replaceAll(' ', '').isEmpty){
-                              EasyLoading.showInfo('Password required');
-                              return;
-                            }
-                            context.read<LoginBloc>().add(LoginApiEvent(_email.text,_password.text, context, rememberMe));
-                          });
-                        }
+                            return customButton(title: AppConstants.login, onPressed: () async {
+                              if(_email.text.replaceAll(' ', '').isEmpty){
+                                EasyLoading.showInfo('Email required');
+                                return;
+                              }
+                              if(_email.text.replaceAll(' ', '').length<5){
+                                EasyLoading.showInfo('Invalid email');
+                                return;
+                              }
+                              if(_password.text.replaceAll(' ', '').isEmpty){
+                                EasyLoading.showInfo('Password required');
+                                return;
+                              }
+                              context.read<LoginBloc>().add(LoginApiEvent(_email.text,_password.text, context, rememberMe));
+                            });
+                          }
                       ),
                     ],),
                   ),
@@ -120,20 +117,11 @@ class _LoginState extends State<Login> {
 
   Widget _forgetRememberMe(){
     return Row(children: [
-      Checkbox.adaptive(
-          fillColor: MaterialStateProperty.resolveWith((states) => AppColors.primary),
-          checkColor:AppColors.black,
-          activeColor: AppColors.white,
-          overlayColor: MaterialStateProperty.resolveWith((states) => AppColors.white) ,
-          value: rememberMe, onChanged: (a){
-        setState(() {
-          rememberMe=a!;
-        });
-      }),
+
       Text(AppConstants.rememberMe,style: AppTextStyles.robotoMedium(color: AppColors.black191B32, fontSize: 14.sp, weight: FontWeight.w500)),
       const Spacer(),
       TextButton(onPressed: (){
-        Navigator.push(context, MyRoute(const ForgotPassword()));
+          Navigator.push(context, MyRoute(const ForgotPassword()));
       }, child: Text(AppConstants.forgotPassword,style: AppTextStyles.robotoMedium(color: AppColors.primary, fontSize: 14.sp, weight: FontWeight.bold)))
     ],);
   }
