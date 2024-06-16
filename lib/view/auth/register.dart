@@ -24,6 +24,7 @@ class Register extends StatefulWidget {
 
 class _RegisterState extends State<Register> {
   TextEditingController name= TextEditingController();
+  TextEditingController designation= TextEditingController();
   TextEditingController email= TextEditingController();
   TextEditingController password= TextEditingController();
 
@@ -45,11 +46,13 @@ class _RegisterState extends State<Register> {
                       _header(),
                       SizedBox(height: 30.h,),
                       customTextField(title:AppConstants.name ,hintText:AppConstants.nameHint ,controller: name,icon: AppImages.iconStudent, isPasswordField: false,inputFormatter: AppConstants.nameFormatter),
-                      SizedBox(height: 20.h,),
+                      SizedBox(height: 10.h,),
+                      customTextField(title:AppConstants.designation ,hintText:AppConstants.designationHint ,controller: designation,icon: AppImages.iconDesignation, isPasswordField: false,inputFormatter: AppConstants.nameFormatter),
+                      SizedBox(height: 10.h,),
                       customTextField(title:AppConstants.email ,hintText:AppConstants.emailHint ,controller: email,icon: AppImages.iconEmail,isPasswordField: false,inputFormatter: AppConstants.emailFormatter),
-                      SizedBox(height: 20.h,),
+                      SizedBox(height: 10.h,),
                       customTextField(title:AppConstants.password ,hintText:AppConstants.passwordHint ,controller: password,icon: AppImages.iconPassword, isPasswordField: true,keyboardType:TextInputType.visiblePassword),
-                      SizedBox(height: 40.h,),
+                      SizedBox(height: 20.h,),
                       BlocBuilder<RegisterBloc,RegisterUserState>(
                           builder: (context,state) {
                             if(state is RegisterLoadingState){
@@ -63,6 +66,14 @@ class _RegisterState extends State<Register> {
                               }
                               if(name.text.replaceAll(' ', '').length<2){
                                 EasyLoading.showInfo('Invalid name');
+                                return;
+                              }
+                              if(designation.text.replaceAll(' ', '').isEmpty){
+                                EasyLoading.showInfo('Designation required');
+                                return;
+                              }
+                              if(designation.text.replaceAll(' ', '').length<4){
+                                EasyLoading.showInfo('designation must have four characters');
                                 return;
                               }
                               if(email.text.replaceAll(' ', '').isEmpty){
@@ -81,7 +92,7 @@ class _RegisterState extends State<Register> {
                                 EasyLoading.showInfo('Password must have eight characters');
                                 return;
                               }
-                              context.read<RegisterBloc>().add(RegisterUserEventApi(email.text,context,name.text,password.text));
+                              context.read<RegisterBloc>().add(RegisterUserEventApi(designation.text,email.text,context,name.text,password.text));
                             });
                           }
                       ),

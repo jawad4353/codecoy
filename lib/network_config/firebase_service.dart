@@ -11,7 +11,7 @@ class FirebaseAuthService {
   static final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   static Future<User?> registerWithEmailAndPassword({required String name,required String email
-    ,required String password }) async {
+    ,required String password,required String designation }) async {
     try {
       EasyLoading.show(status: 'Registering...');
       UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
@@ -29,7 +29,9 @@ class FirebaseAuthService {
           'name': name,
           'email': email,
           'uid': user.uid,
-          'imageUrl': 'noimage',
+          'image_url': 'noimage',
+          'designation':designation,
+          'registration_date':DateTime.now().toString()
         });
       }
       EasyLoading.showSuccess('Verify your email by clicking link sent at $email');
@@ -42,7 +44,6 @@ class FirebaseAuthService {
       EasyLoading.dismiss();
     }
   }
-
 
 
 

@@ -8,11 +8,11 @@ class AppConstants{
 //Login
   static String login='Login';
   static String welcomeBack='Welcome Back';
-  static String moveMate='Movemate';
   static String enterUsernamePassword='Enter your Email & Password';
   static String alreadyHaveAccount='Already have an account? ';
   static String name='Name';
   static String nameHint='Jawad';
+  static String designationHint='junior php developer';
   static String email='Email';
   static String emailHint='abc@gmail.com';
   static String password='Password';
@@ -52,10 +52,25 @@ class AppConstants{
   static String aboutUsUrl='https://codecoytechnologies.com/about/';
   static String shareAppUrl='https://drive.google.com/file/d/1xlWseTSDabQTf7m6bFieiDdjosFyDt_b/view?usp=sharing';
   static String appVersion='version $version';
+  static String viewImage='View Image';
+  static String home='Home';
 
+
+
+  //profile
+  static String profile='Profile';
+  static String designation='Designation';
+  static String userID='User ID';
+  static String registrationDate='Registration Date';
+  //drawer
   static String areYouSureLogout='Are you sure you want to logout  ?';
   static String areYouSureExit=' Do you want to exit app ?';
   static String exit='Exit';
   static String logout='Logout';
   static String cancel='Cancel';
+
+
+  //maps
+  static String liveTrack='Track Live';
+
 }

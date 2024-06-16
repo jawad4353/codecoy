@@ -60,6 +60,9 @@ dependencies:
   firebase_core:
   firebase_storage:
   cloud_functions:
+  hive: ^2.0.4
+  hive_flutter: ^1.1.0
+  path_provider: ^2.1.3
 
 
 

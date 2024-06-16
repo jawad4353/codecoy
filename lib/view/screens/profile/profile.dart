@@ -1,9 +1,11 @@
+import 'package:codecoy/view_model/profile_bloc/profile_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../main.dart';
 import '../../../utilis/app_colors.dart';
+import '../../../utilis/app_constants.dart';
 import '../../../utilis/app_images.dart';
-import '../../../utilis/app_preferences.dart';
 import '../../../utilis/app_text_styles.dart';
 
 
@@ -19,6 +21,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
   String ? imageUrl;
   String ? version ;
 
+@override
+  void initState() {
+    super.initState();
+    context.read<ProfileBloc>().add(const ProfileLoadEvent());
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -28,12 +36,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
           backgroundColor:AppColors.primary ,
           automaticallyImplyLeading: false,
           centerTitle: true,
-          title:  Text('Profile',style: AppTextStyles.robotoMedium(color: AppColors.white, fontSize: 24.sp, weight: FontWeight.w600),),),
-        body:  _body()
+          title:  Text(AppConstants.profile,style: AppTextStyles.robotoMedium(color: AppColors.white, fontSize: 24.sp, weight: FontWeight.w600),),),
+        body:  BlocBuilder<ProfileBloc,ProfileStates>(
+          builder: (context,state) {
+            if(state is ProfileLoadingState){
+              return Center(child:  CircularProgressIndicator(color: AppColors.primary,));
+            }
+            if(state is ProfileLoadedState){
+              return  _body(name: '', designation: '', userId: '', registrationDate: '', email: '');
+            }
+            if(state is ProfileErrorState){
+              EasyLoading.showInfo('Something went wrong');
+              return   _body(name: '_', designation: '_', userId: '_', registrationDate: '_', email: '_');
+            }
+            return const SizedBox();
+          }
+        )
     );
   }
 
-  Widget _body(){
+
+  Widget _body({required String name,required String designation,required String userId,required String registrationDate,required String email,}){
     return SingleChildScrollView(
       physics: const AlwaysScrollableScrollPhysics(),
       child: Column(
@@ -43,16 +66,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
           SizedBox(height: 10.h,),
           Padding(
             padding:  EdgeInsets.symmetric(horizontal: 45.h),
-            child: Text(preferences.getString(AppPrefs.keyName)??'', style: TextStyle(fontSize: 17.sp, fontWeight: FontWeight.w600, color: AppColors.black191B32),),
+            child: Text(name, style: TextStyle(fontSize: 17.sp, fontWeight: FontWeight.w600, color: AppColors.black191B32),),
           ),
           SizedBox(height: 1.h,),
 
           Padding(
             padding:  EdgeInsets.symmetric(horizontal: 0.2.sw),
-            child: Text('', style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w800, color: AppColors.black191B32),),
+            child: Text(designation, style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w800, color: AppColors.black191B32),),
           ),
           SizedBox(height: 20.h,),
-          _detailBox()
+          _detailBox(email: email, userId: userId, registrationDate: registrationDate)
         ],
       ),
     );
@@ -98,7 +121,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
-  Widget _detailBox(){
+  Widget _detailBox({required String userId,required String registrationDate,required String email,}){
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 15.w),
       padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 15.h),
@@ -109,23 +132,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _titleValue(title: "", value: preferences.getString(AppPrefs.keyId) ?? ''),
+          _titleValue(title: AppConstants.userID, value: userId),
           SizedBox(height: 15.h,),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 5.w),
             child: Divider(height: 3.h, color: AppColors.grey0E0F10.withOpacity(0.2),thickness: 1.5),
           ),
           SizedBox(height: 15.h,),
-          _titleValue(title: "ID", value: "_" ),
-          SizedBox(height: 15.h,),
-          _titleValue(title: "Email", value: "_" ),
+          _titleValue(title:AppConstants.email, value: email ),
           SizedBox(height: 15.h,),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 5.w),
             child: Divider(height: 3.h, color:  AppColors.grey0E0F10.withOpacity(0.2),thickness: 1.5),
           ),
           SizedBox(height: 15.h,),
-          _titleValue(title: "Registration date", value: ''),
+          _titleValue(title: AppConstants.registrationDate, value: registrationDate),
           SizedBox(height: 15.h,),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 5.w),

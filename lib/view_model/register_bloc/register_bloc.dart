@@ -13,7 +13,7 @@ class RegisterBloc extends Bloc<RegisterUserEvent, RegisterUserState> {
     on<RegisterUserEvent>((event, emit) async{
       if(event is RegisterUserEventApi){
         emit(RegisterLoadingState());
-        User ? user= await FirebaseAuthService.registerWithEmailAndPassword(name: event.name, email: event.email, password: event.password);
+        User ? user= await FirebaseAuthService.registerWithEmailAndPassword(name: event.name, email: event.email, password: event.password,designation:event.designation);
        print('user is $user');
         if(user==null){
           emit(RegisterErrorState());
