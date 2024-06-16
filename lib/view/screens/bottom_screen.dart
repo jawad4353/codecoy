@@ -10,6 +10,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../utilis/app_colors.dart';
 import '../../utilis/app_constants.dart';
 import '../../view_model/bottom_navbar_bloc/bottom_navbar_bloc.dart';
+import '../../view_model/profile_bloc/profile_bloc.dart';
 import '../dialogues/exit_dialogue.dart';
 import 'home/home.dart';
 
@@ -29,6 +30,7 @@ class _BottomScreenState extends State<BottomScreen> {
   void initState() {
     super.initState();
     context.read<BottomNavBarBloc>().add(const BottomNavBarChangePageEvent(0));
+
   }
 
   @override

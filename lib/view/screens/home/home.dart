@@ -30,7 +30,7 @@ class _HomeState extends State<Home> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   List<Color> myColors=[AppColors.green,AppColors.brown,AppColors.black,AppColors.primary,AppColors.orange,AppColors.purple];
 
-@override
+  @override
   void initState() {
     super.initState();
     context.read<ProfileBloc>().add(const ProfileLoadEvent());
@@ -60,14 +60,12 @@ class _HomeState extends State<Home> {
             child: TextField(
               cursorColor: AppColors.primary,
               style:AppTextStyles.robotoMedium(color: AppColors.greyB2AFAF, fontSize: 13.sp, weight: FontWeight.normal),
-
               onChanged: (a){
-
               },
               decoration:  InputDecoration(
                 contentPadding: EdgeInsets.only(top: 9.h),
                 prefixIcon:  Icon(Icons.search,color:  AppColors.greyB2AFAF,),
-                hintText: ' Search bus',
+                hintText:  AppConstants.search,
                 hintStyle: AppTextStyles.robotoMedium(color: AppColors.greyB2AFAF, fontSize: 13.h, weight: FontWeight.w400),
                 border: InputBorder.none,
               ),
@@ -75,7 +73,6 @@ class _HomeState extends State<Home> {
           ) ,
           actions: [
             IconButton(onPressed: (){
-
             }, icon:Image.asset(AppImages.iconNotifications,color: AppColors.primary,height: 28.h,)),
           ],
         ),
@@ -93,7 +90,11 @@ class _HomeState extends State<Home> {
                   child: BlocBuilder<ProfileBloc,ProfileStates>(
                     builder: (context,state) {
                       if(state is ProfileLoadingState){
-                        return Center(child:  CircularProgressIndicator(color: AppColors.primary,));
+                        return Stack(children: [
+                          _profile(imageUrl: '', name: preferences.getString(AppPrefs.keyName)??'', email:preferences.getString(AppPrefs.keyEmail)??''),
+                           Center(child:  CircularProgressIndicator(color: AppColors.white,)),
+
+                        ],);
                       }
                       if(state is ProfileLoadedState){
                         return  _profile(imageUrl: state.myModel.imageUrl, name:  state.myModel.name, email: state.myModel.email);

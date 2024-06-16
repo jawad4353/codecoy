@@ -45,6 +45,7 @@ class AppConstants{
 
   //home
   static String contactUs='Contact Us';
+  static String search='Search';
   static String shareApp='Share App';
   static String aboutUs='About Us';
   static String logOut='Logout';

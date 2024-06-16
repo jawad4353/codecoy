@@ -13,10 +13,12 @@ part 'profile_bloc_events.dart';
 part 'profile_bloc_states.dart';
 
 class ProfileBloc extends Bloc<ProfileEvent, ProfileStates> {
+  bool isFirstEvent = true;
   ProfileBloc() : super(ProfileInitialState()) {
     on<ProfileEvent>((event, emit) async{
       if(event is ProfileLoadEvent){
-        emit(ProfileLoadingState());
+        if(isFirstEvent){emit(ProfileLoadingState());}
+        isFirstEvent=false;
         try{
           DocumentSnapshot<Map<String, dynamic>> profileData= await FirebaseFirestore.instance.collection('users').doc(preferences.getString(AppPrefs.keyEmail)).get();
           if(profileData.exists){
