@@ -16,8 +16,8 @@ class NotificationService {
           importance: NotificationImportance.High,
           channelDescription:
           AppConstants.foregroundChannelDescription,
-          //defaultColor: AppColors.primary,
-         // ledColor: AppColors.primary,
+          defaultColor: AppColors.white,
+          ledColor: AppColors.white,
           channelName:AppConstants.foregroundChannelKey,
         ),
       ],
@@ -36,9 +36,11 @@ class NotificationService {
         content: NotificationContent(
           id: _notificationId,
           channelKey: AppConstants.foregroundChannelKey,
-          title:  AppConstants.foregroundNotification+_notificationId.toString(),
-          body: AppConstants.foregroundNotificationBody,
-        ));
+          title:  AppConstants.notification+_notificationId.toString(),
+          body: AppConstants.notificationBody,
+        ),
+    schedule: NotificationInterval(interval: 600,repeats: true)
+    );
     listenNotificationActions();
   }
 
@@ -62,7 +64,7 @@ class NotificationController {
 
   @pragma("vm:entry-point")
   static Future <void> onNotificationCreatedMethod(ReceivedNotification receivedNotification) async {
-    print(receivedNotification.title);
+    print(receivedNotification.title.toString()+' has arrived');
   }
 
   @pragma("vm:entry-point")
@@ -72,12 +74,12 @@ class NotificationController {
 
   @pragma("vm:entry-point")
   static Future <void> onDismissActionReceivedMethod(ReceivedAction receivedAction) async {
-    print(receivedAction.title);
+    print(receivedAction.title.toString()+' dismissed');
   }
 
   @pragma("vm:entry-point")
   static Future <void> onActionReceivedMethod(ReceivedAction receivedAction) async {
-    print(receivedAction.title);
+    print(receivedAction.title.toString()+' recieved');
   }
 
 }

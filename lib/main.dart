@@ -10,13 +10,17 @@ import 'package:codecoy/view_model/register_bloc/register_bloc.dart';
 import 'package:codecoy/view_model/web_view_bloc/web_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_background_service/flutter_background_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'data/hive-helper.dart';
 
-
+// @pragma('vm:entry-point')
+// void onStart(ServiceInstance service){
+//   NotificationService.showNotification();
+// }
 late SharedPreferences preferences;
 String ? version;
 String ? bearerToken;
@@ -36,11 +40,12 @@ Future<void> main() async {
 }
 //free api key    AIzaSyBJ_XlxltqRMHEaqUxKak6LkIb0jt4qRWM
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatelessWidget   {
   Size ? size;
   MyApp({super.key});
   @override
   Widget build(BuildContext context) {
+   // WidgetsBinding.instance.addObserver(this);
     size=MediaQuery.of(context).size;
     return ScreenUtilInit(
       designSize:  Size(size!.width, size!.height),
@@ -64,4 +69,18 @@ class MyApp extends StatelessWidget {
       ),
     );
   }
+
+// @override
+//   void didChangeAppLifecycleState(AppLifecycleState state) {
+//     super.didChangeAppLifecycleState(state);
+//     if(state  ==AppLifecycleState.detached || state  ==AppLifecycleState.paused){
+//       print('====\n\n\n $state');
+//       FlutterBackgroundService().configure(iosConfiguration: IosConfiguration(),
+//           androidConfiguration: AndroidConfiguration(onStart: onStart, isForegroundMode: false));
+//     }
+//     else{
+//       print('====\n\n\n $state');
+//       FlutterBackgroundService().configure(iosConfiguration: IosConfiguration(), androidConfiguration: AndroidConfiguration(onStart: onStart, isForegroundMode: true));
+//     }
+//   }
 }

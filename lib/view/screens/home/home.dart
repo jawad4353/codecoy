@@ -131,8 +131,9 @@ class _HomeState extends State<Home> {
           child: Padding(
             padding:  EdgeInsets.symmetric(horizontal: 33.w),
             child: customButton(title: AppConstants.createNotification, onPressed: () async {
-              EasyLoading.showInfo('Notification scheduled after 5 seconds');
-              await Future.delayed(const Duration(seconds: 5),(){NotificationService.showNotification();});
+              EasyLoading.showInfo('Notification will apear after 5 minutes');
+              NotificationService.showNotification();
+             // await Future.delayed(const Duration(seconds: 0),(){;});
             }),
           ),
         ),
