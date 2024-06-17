@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:codecoy/network_config/firebase_service.dart';
 import 'package:codecoy/splash_screen.dart';
 import 'package:codecoy/utilis/app_colors.dart';
-import 'package:codecoy/view/screens/home/notifications.dart';
+import 'package:codecoy/view/screens/home/notification_service.dart';
 import 'package:codecoy/view_model/bottom_navbar_bloc/bottom_navbar_bloc.dart';
 import 'package:codecoy/view_model/login_bloc/login_bloc.dart';
 import 'package:codecoy/view_model/profile_bloc/profile_bloc.dart';
@@ -14,22 +14,19 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'data/hive-helper.dart';
 
 
 late SharedPreferences preferences;
 String ? version;
-NotificationService notificationService = NotificationService();
 String ? bearerToken;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   HiveHelper.init();
-  notificationService.initialize();
-  notificationService.initializeWorkManager();
   FirebaseAuthService.initialize();
   FirebaseAuthService.getAppVersion();
+  NotificationService.initialize();
   preferences=await SharedPreferences.getInstance();
   runApp( MyApp());
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp,DeviceOrientation.portraitDown]);

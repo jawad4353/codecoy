@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:codecoy/network_config/firebase_service.dart';
 import 'package:codecoy/utilis/app_constants.dart';
+import 'package:codecoy/view/widgets/custom_button.dart';
 import 'package:codecoy/view_model/bottom_navbar_bloc/bottom_navbar_bloc.dart';
 import 'package:codecoy/view_model/profile_bloc/profile_bloc.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +18,7 @@ import '../../../utilis/app_text_styles.dart';
 import '../../auth/login.dart';
 import '../../dialogues/logout.dart';
 import '../more/web_view_helper.dart';
+import 'notification_service.dart';
 
 
 
@@ -120,29 +122,20 @@ class _HomeState extends State<Home> {
                     child: Text(AppConstants.appVersion,style: AppTextStyles.robotoMedium(color: AppColors.grey0E0F10, fontSize: 15.sp, weight: FontWeight.w300),),
                   ),
                 )
-
               ],
             ),
           ),
         ),
 
-        body: ListView(children:  [
-          //const MySlider(),
-          Text('\n   Features',style:AppTextStyles.robotoMedium(color: AppColors.black191B32, fontSize: 24.sp, weight: FontWeight.w600),),
-          Padding(
-            padding:  EdgeInsets.symmetric(horizontal: 5.w,vertical: 6.h),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-
-              valueContainers(title: 'Total Employee', result: '_' , color: AppColors.brown,),
-                valueContainers(title: 'Total Flutter', result: '45', color: AppColors.orange,)
-              ],),
+        body: Center(
+          child: Padding(
+            padding:  EdgeInsets.symmetric(horizontal: 33.w),
+            child: customButton(title: AppConstants.createNotification, onPressed: () async {
+              EasyLoading.showInfo('Notification scheduled after 5 seconds');
+              await Future.delayed(const Duration(seconds: 5),(){NotificationService.showNotification();});
+            }),
           ),
-
-
-        ],),
+        ),
       ),
     );
   }
@@ -190,31 +183,6 @@ class _HomeState extends State<Home> {
     );
   }
 
-  Widget valueContainers({required String title, required String result,required Color color}){
-    return Container(
-      width: 1.sw*0.27 ,
-      padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 12),
-      decoration: BoxDecoration(
-          border: Border.all(color: color , width: 1),
-          color: color.withOpacity(0.15),
-          borderRadius: BorderRadius.circular(4)
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(title,style: AppTextStyles.robotoMedium(color: AppColors.grey0E0F10,fontSize: 17.0,weight: FontWeight.w500 ),),
-          const SizedBox(height: 12),
-          Container(
-            height: 3,
-            width: 22,
-            color: color,
-          ),
-          const SizedBox(height: 12),
-          Text(result,style: AppTextStyles.robotoMedium(color: color,fontSize: 20.0,weight: FontWeight.w500 ),)
-        ],
-      ),
-    );
-  }
 
   Widget _profile({required String imageUrl,required String name,required String email}){
     return  UserAccountsDrawerHeader(

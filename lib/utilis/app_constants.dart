@@ -55,8 +55,13 @@ class AppConstants{
   static String appVersion='version $version';
   static String viewImage='View Image';
   static String home='Home';
-
-
+  static String createNotification='Create Notification';
+  static String features='Features';
+  static String foregroundChannelDescription=' This jawad_foreground is channel to display foreground notifications';
+  static String foregroundChannelKey='Jawad Foreground';
+  static String channelIcon='resource://mipmap/ic_launcher';
+  static String foregroundNotification='Foreground Notification ';
+  static String foregroundNotificationBody='App is in Resumed state ';
 
   //profile
   static String profile='Profile';

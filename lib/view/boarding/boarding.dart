@@ -105,7 +105,6 @@ class _BoardingScreenState extends State<BoardingScreen> {
   Widget _btnNext(){
     return InkWell(
       onTap: (){
-        notificationService.schedulePeriodicNotifications();
         Navigator.pushReplacement(context, MyRoute(const Login()));
       },
       child: Container(
