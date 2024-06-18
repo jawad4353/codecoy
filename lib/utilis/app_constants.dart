@@ -88,6 +88,7 @@ class AppConstants{
   //maps
   static String liveTrack='Track Live';
   static String errorLoadingMap='Error loading map';
+  static String loading='Loading';
 
 
 }

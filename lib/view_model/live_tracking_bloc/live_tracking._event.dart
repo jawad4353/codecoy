@@ -5,16 +5,17 @@ abstract class LiveTrackingEvent extends Equatable {
 }
 
 
-class LiveTrackingLoadingEvent extends LiveTrackingEvent{
-  const LiveTrackingLoadingEvent();
+class LiveTrackingLoadEvent extends LiveTrackingEvent{
+  final LatLng currentPosition;
+  const LiveTrackingLoadEvent(this.currentPosition);
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [currentPosition];
 }
 
 
-class LocationChangedEvent extends LiveTrackingEvent{
-  final LatLng currentPosition;
-  const LocationChangedEvent(this.currentPosition);
+class FetchLocationEvent extends LiveTrackingEvent{
+  final BuildContext context;
+  const FetchLocationEvent(this.context);
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [context];
 }

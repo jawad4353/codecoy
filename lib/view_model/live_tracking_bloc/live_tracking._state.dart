@@ -9,15 +9,19 @@ class LiveTrackingInitial extends LiveTrackingState {
   List<Object> get props => [];
 }
 
+class LiveTrackingLoadingState extends LiveTrackingState {
+  const LiveTrackingLoadingState();
+  @override
+  List<Object> get props => [];
+}
 
 
 class LiveTrackingLoadedState extends LiveTrackingState {
   final LatLng currentPosition;
   const LiveTrackingLoadedState(this.currentPosition);
   @override
-  List<Object> get props => [];
+  List<Object> get props => [currentPosition];
 }
-
 
 
 class LiveTrackingErrorState extends LiveTrackingState {

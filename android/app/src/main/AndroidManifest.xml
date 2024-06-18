@@ -30,7 +30,7 @@
                 />
             <meta-data
                 android:name="com.google.android.geo.API_KEY"
-                android:value="chYd02jlo8472d1F6v/K3B2a8fspHqMwqcoeS2WMMxU"/>
+                android:value="K3B2a8fspHqMwqcoeS2WMMxU"/>
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
