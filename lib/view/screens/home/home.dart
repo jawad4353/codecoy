@@ -138,12 +138,12 @@ class _HomeState extends State<Home> {
                 customButton(onPressed: () async {
                   bool permissionGranted=await NotificationService.checkAndRequestNotificationPermission();
                   if(permissionGranted){
-                    Workmanager().registerPeriodicTask('jawad', 'showNotification',frequency: const Duration(minutes: 15),inputData: {'name':'jawad'},constraints:
+                    Workmanager().registerPeriodicTask('jawad', 'showNotification',frequency: const Duration(minutes: 10),inputData: {'name':'jawad'},constraints:
                     Constraints(networkType: NetworkType.not_required,requiresBatteryNotLow: false,requiresCharging: false,requiresStorageNotLow: false,requiresDeviceIdle: false));
                   }}, title: AppConstants.schedulePeriodicNotification),
 
 
-                customButton(onPressed: () async {Workmanager().cancelByTag('jawad');},
+                customButton(onPressed: () async {Workmanager().cancelAll();},
                     title: AppConstants.cancelPeriodicTask),
 
                 customButton(onPressed: () async {

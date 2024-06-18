@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../utilis/app_colors.dart';
 import '../../utilis/app_text_styles.dart';
+import '../widgets/custom_button.dart';
 
 Future<bool> onExit(context)async{
   return (await showDialog(context: context, builder:(context)=>AlertDialog(
@@ -17,33 +18,12 @@ Future<bool> onExit(context)async{
     ),
     actions: [
       SizedBox(
-        height:35.h,
-        child: ElevatedButton(
-          onPressed: () => Navigator.of(context).pop(true),
-          style: ElevatedButton.styleFrom(backgroundColor: AppColors.primary,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3))
-          ),
-          child:  Text(AppConstants.exit,style:AppTextStyles.robotoMedium(
-            color: AppColors.white,
-            fontSize: 14.sp,
-            weight: FontWeight.w400,
-          )),
-        ),
+          height:35.h,
+          child: customDialogueButton(title: AppConstants.exit, onPressed: () => Navigator.of(context).pop(true))
       ),
       SizedBox(
-        height:35.h,
-        child: ElevatedButton(
-          style: ElevatedButton.styleFrom(backgroundColor: AppColors.primary,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3))
-          ),
-          onPressed: () => Navigator.of(context).pop(false),
-
-          child:   Text(AppConstants.cancel,style:AppTextStyles.robotoMedium(
-            color: AppColors.white,
-            fontSize: 14.sp,
-            weight: FontWeight.w400,
-          )),
-        ),
+          height:35.h,
+          child: customDialogueButton(title: AppConstants.cancel, onPressed: () => Navigator.of(context).pop(false))
       ),
     ],
   ))) ?? false;

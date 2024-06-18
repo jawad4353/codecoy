@@ -1,4 +1,5 @@
 import 'package:codecoy/utilis/app_constants.dart';
+import 'package:codecoy/view/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../utilis/app_colors.dart';
@@ -17,32 +18,12 @@ Future<bool> onLogOut(context)async{
     ),
     actions: [
       SizedBox(
-        height:35.h,
-        child: ElevatedButton(
-          onPressed: () => Navigator.of(context).pop(true),
-          style: ElevatedButton.styleFrom(backgroundColor: AppColors.primary,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3))
-          ),
-          child:  Text(AppConstants.logOut,style:AppTextStyles.robotoMedium(
-            color: AppColors.white,
-            fontSize: 14.sp,
-            weight: FontWeight.w400,
-          )),
-        ),
+          height:35.h,
+          child: customDialogueButton(title: AppConstants.logOut, onPressed: () => Navigator.of(context).pop(true))
       ),
       SizedBox(
         height:35.h,
-        child: ElevatedButton(
-          style: ElevatedButton.styleFrom(backgroundColor: AppColors.primary,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3))
-          ),
-          onPressed: () => Navigator.of(context).pop(false),
-          child:   Text(AppConstants.cancel,style:AppTextStyles.robotoMedium(
-            color: AppColors.white,
-            fontSize: 14.sp,
-            weight: FontWeight.w400,
-          )),
-        ),
+        child: customDialogueButton(title: AppConstants.cancel, onPressed: () => Navigator.of(context).pop(false))
       ),
     ],
   ))) ?? false;

@@ -1,6 +1,4 @@
-
 import 'dart:typed_data';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:codecoy/network_config/firebase_service.dart';
 import 'package:codecoy/utilis/app_routes.dart';
@@ -31,7 +29,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   String ? imageUrl;
   String ? version ;
 
-@override
+  @override
   void initState() {
     super.initState();
     context.read<ProfileBloc>().add(const ProfileLoadEvent());
@@ -80,24 +78,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget _body({required String imageUrl,required String name,required String designation,required String userId,required String registrationDate,required String email,}){
     return SingleChildScrollView(
       physics: const AlwaysScrollableScrollPhysics(),
-      child: Column(
-        children: [
-          SizedBox(height: 15.h,),
-          _userImage(imageUrl: imageUrl),
-          SizedBox(height: 10.h,),
-          Padding(
-            padding:  EdgeInsets.symmetric(horizontal: 45.h),
-            child: Text(StringFormatting.capitalizeAfterSpace(name), style: AppTextStyles.robotoMedium(color: AppColors.grey0E0F10, fontSize: 18.sp, weight: FontWeight.w400),),
-          ),
-          SizedBox(height: 1.h,),
+      child: Padding(
+        padding:  EdgeInsets.symmetric(horizontal:1.sw>500 ? 1.sw*0.12:1.sw*0.05),
+        child: Column(
+          children: [
+            SizedBox(height: 15.h,),
+            _userImage(imageUrl: imageUrl),
+            SizedBox(height: 10.h,),
+            Padding(
+              padding:  EdgeInsets.symmetric(horizontal: 45.h),
+              child: Text(StringFormatting.capitalizeAfterSpace(name), style: AppTextStyles.robotoMedium(color: AppColors.grey0E0F10, fontSize: 18.sp, weight: FontWeight.w400),),
+            ),
+            SizedBox(height: 1.h,),
 
-          Padding(
-            padding:  EdgeInsets.symmetric(horizontal: 0.2.sw),
-            child: Text(StringFormatting.capitalizeAfterSpace(designation), style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w800, color: AppColors.black191B32),),
-          ),
-          SizedBox(height: 20.h,),
-          _detailBox(email: email, userId: userId, registrationDate: StringFormatting.formatRegistrationDate(date: registrationDate))
-        ],
+            Padding(
+              padding:  EdgeInsets.symmetric(horizontal: 0.2.sw),
+              child: Text(StringFormatting.capitalizeAfterSpace(designation), style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w800, color: AppColors.black191B32),),
+            ),
+            SizedBox(height: 20.h,),
+            _detailBox(email: email, userId: userId, registrationDate: StringFormatting.formatRegistrationDate(date: registrationDate))
+          ],
+        ),
       ),
     );
   }

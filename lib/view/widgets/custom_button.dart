@@ -30,3 +30,20 @@ Widget customButton({
     ),
   );
 }
+
+
+
+Widget customDialogueButton( {required String title,
+  required VoidCallback onPressed}){
+  return ElevatedButton(
+    style: ElevatedButton.styleFrom(backgroundColor: AppColors.primary,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3))
+    ),
+    onPressed:onPressed,
+    child:   Text(title,style:AppTextStyles.robotoMedium(
+      color: AppColors.white,
+      fontSize: 14.sp,
+      weight: FontWeight.w400,
+    )),
+  );
+}

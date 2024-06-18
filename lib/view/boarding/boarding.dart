@@ -1,12 +1,15 @@
+import 'package:app_settings/app_settings.dart';
 import 'package:codecoy/utilis/app_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../main.dart';
+import 'package:permission_handler/permission_handler.dart';
 import '../../utilis/app_colors.dart';
 import '../../utilis/app_images.dart';
 import '../../utilis/app_routes.dart';
 import '../../utilis/app_text_styles.dart';
 import '../auth/login.dart';
+import '../dialogues/location_permission_dialogue.dart';
+
 
 
 class BoardingScreen extends StatefulWidget {
@@ -80,9 +83,7 @@ class _BoardingScreenState extends State<BoardingScreen> {
 
   Widget _btnSkip(){
     return InkWell(
-      onTap: (){
-        Navigator.pushReplacement(context, MyRoute(const Login()));
-      },
+      onTap:(){goToLogin();},
       child: Container(
         height: 60.h,
         width: 60.h,
@@ -104,9 +105,7 @@ class _BoardingScreenState extends State<BoardingScreen> {
 
   Widget _btnNext(){
     return InkWell(
-      onTap: (){
-        Navigator.pushReplacement(context, MyRoute(const Login()));
-      },
+      onTap:(){goToLogin();},
       child: Container(
         height: 60.h,
         width: 60.h,
@@ -125,4 +124,27 @@ class _BoardingScreenState extends State<BoardingScreen> {
       ),
     );
   }
+
+
+  Future<bool> requestLocationPermission() async {
+    final status = await Permission.location.request();
+    if (status.isGranted) {
+      return true;
+    } else if (status.isPermanentlyDenied) {
+      AppSettings.openAppSettings();
+    }
+    return false;
+  }
+
+  goToLogin() async {
+    bool result=await requestLocationPermission();
+    if(result){
+      Navigator.pushReplacement(context, MyRoute(const Login()));
+    }
+    else{
+      onLocationPermission(context);
+    }
+
+  }
+
 }

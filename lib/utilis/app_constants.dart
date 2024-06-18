@@ -28,6 +28,10 @@ class AppConstants{
       ' a smooth, efficient, and streamlined workflow';
   static String skip='Skip';
   static String next='Next';
+  static String ok='Ok';
+  static String locationRequired='Location required ';
+  static String appNeedsLocation='This app needs access to your location to function properly';
+
   //Register
   static String signUp='Sign Up';
   static String code='Code';
