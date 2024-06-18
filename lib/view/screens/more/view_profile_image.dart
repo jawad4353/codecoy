@@ -16,7 +16,7 @@ class ImageDisplayScreen extends StatelessWidget {
     return Scaffold(
       appBar: PreferredSize(
           preferredSize: Size.fromHeight(56.0.h),
-          child: myAppBar(title: AppConstants.viewImage, context: context)),
+          child: myAppBar(title: AppConstants.viewImage, context: context,shouldPop: true)),
       body: Center(
         child: imageUrl == null
             ? CircleAvatar(

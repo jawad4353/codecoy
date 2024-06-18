@@ -62,6 +62,9 @@ class AppConstants{
   static String channelIcon='resource://mipmap/ic_launcher';
   static String notification=' Notification ';
   static String notificationBody='App is in Resumed state ';
+  static String schedulePeriodicNotification='Schedule Notifications periodic';
+  static String cancelPeriodicTask='Cancel Periodic Task';
+  static String getInstantNotifications='Get Instant Notification';
 
   //profile
   static String profile='Profile';
@@ -80,5 +83,7 @@ class AppConstants{
 
   //maps
   static String liveTrack='Track Live';
+  static String errorLoadingMap='Error loading map';
+
 
 }

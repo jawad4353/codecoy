@@ -9,6 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:workmanager/workmanager.dart';
 import '../../../main.dart';
 import '../../../utilis/app_colors.dart';
 import '../../../utilis/app_images.dart';
@@ -127,14 +128,29 @@ class _HomeState extends State<Home> {
           ),
         ),
 
-        body: Center(
-          child: Padding(
-            padding:  EdgeInsets.symmetric(horizontal: 33.w),
-            child: customButton(title: AppConstants.createNotification, onPressed: () async {
-              EasyLoading.showInfo('Notification will apear after 5 minutes');
-              NotificationService.showNotification();
-             // await Future.delayed(const Duration(seconds: 0),(){;});
-            }),
+        body:Center(
+          child: SizedBox(
+            width: 290.w,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                customButton(onPressed: () async {
+                  bool permissionGranted=await NotificationService.checkAndRequestNotificationPermission();
+                  if(permissionGranted){
+                    Workmanager().registerPeriodicTask('jawad', 'showNotification',frequency: const Duration(minutes: 15),inputData: {'name':'jawad'},constraints:
+                    Constraints(networkType: NetworkType.not_required,requiresBatteryNotLow: false,requiresCharging: false,requiresStorageNotLow: false,requiresDeviceIdle: false));
+                  }}, title: AppConstants.schedulePeriodicNotification),
+
+
+                customButton(onPressed: () async {Workmanager().cancelByTag('jawad');},
+                    title: AppConstants.cancelPeriodicTask),
+
+                customButton(onPressed: () async {
+                  bool permissionGranted=await NotificationService.checkAndRequestNotificationPermission();
+                  if(permissionGranted){NotificationService.showNotification();}},
+                    title: AppConstants.getInstantNotifications),
+              ],),
           ),
         ),
       ),

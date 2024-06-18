@@ -28,7 +28,7 @@ class _WebViewHelperState extends State<WebViewHelper> {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(59.0),
-        child: myAppBar(title: widget.title, context: context),
+        child: myAppBar(title: widget.title, context: context,shouldPop: true),
       ),
       body: BlocBuilder<WebViewBloc, WebViewState>(
         builder: (context, state) {

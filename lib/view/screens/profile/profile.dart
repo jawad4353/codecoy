@@ -5,6 +5,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:codecoy/network_config/firebase_service.dart';
 import 'package:codecoy/utilis/app_routes.dart';
 import 'package:codecoy/view/screens/profile/view_picture.dart';
+import 'package:codecoy/view/widgets/custom_appbar.dart';
 import 'package:codecoy/view_model/profile_bloc/profile_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -41,11 +42,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: AppColors.white,
-        appBar: AppBar(
-          backgroundColor:AppColors.primary ,
-          automaticallyImplyLeading: false,
-          centerTitle: true,
-          title:  Text(AppConstants.profile,style: AppTextStyles.robotoMedium(color: AppColors.white, fontSize: 24.sp, weight: FontWeight.w600),),),
+        appBar: PreferredSize(
+            preferredSize: Size.fromHeight(56.0.h),
+            child: myAppBar(title: AppConstants.profile, context: context, shouldPop: false))
+       ,
         body:  RefreshIndicator(
           onRefresh: () async {
             context.read<ProfileBloc>().add(const ProfileLoadEvent());

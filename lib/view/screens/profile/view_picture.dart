@@ -14,7 +14,7 @@ class ViewPicture extends StatelessWidget {
     return Scaffold(
       appBar: PreferredSize(
           preferredSize: Size.fromHeight(56.h),
-          child: myAppBar(title: AppConstants.profilePicture, context: context)),
+          child: myAppBar(title: AppConstants.profilePicture, context: context,shouldPop: true)),
    body: InteractiveViewer(
        maxScale: 3,
        minScale: 0.5,

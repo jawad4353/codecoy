@@ -10,7 +10,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../utilis/app_colors.dart';
 import '../../utilis/app_constants.dart';
 import '../../view_model/bottom_navbar_bloc/bottom_navbar_bloc.dart';
-import '../../view_model/profile_bloc/profile_bloc.dart';
 import '../dialogues/exit_dialogue.dart';
 import 'home/home.dart';
 
@@ -23,7 +22,7 @@ class BottomScreen extends StatefulWidget {
 }
 
 class _BottomScreenState extends State<BottomScreen> {
-  var listScreens = [const Home(),const ProfileScreen(),const LiveTracking(),];
+  var listScreens = [const Home(),const ProfileScreen(), LiveTrackingMap(),];
   int i = 0;
 
   @override

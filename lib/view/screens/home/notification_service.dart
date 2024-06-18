@@ -26,11 +26,6 @@ class NotificationService {
 
 
   static void showNotification() async {
-    AwesomeNotifications().isNotificationAllowed().then((isAllowed) async {
-      if (!isAllowed) {
-        await AwesomeNotifications().requestPermissionToSendNotifications();
-      }
-    });
     _notificationId++;
     await AwesomeNotifications().createNotification(
         content: NotificationContent(
@@ -39,9 +34,19 @@ class NotificationService {
           title:  AppConstants.notification+_notificationId.toString(),
           body: AppConstants.notificationBody,
         ),
-    schedule: NotificationInterval(interval: 600,repeats: true)
+    //schedule: NotificationInterval(interval: 600,repeats: true)
     );
     listenNotificationActions();
+  }
+
+
+  static Future<bool> checkAndRequestNotificationPermission() async {
+    bool isAllowed = await AwesomeNotifications().isNotificationAllowed();
+    if (!isAllowed) {
+      await AwesomeNotifications().requestPermissionToSendNotifications();
+      isAllowed = await AwesomeNotifications().isNotificationAllowed();
+    }
+    return isAllowed;
   }
 
 
