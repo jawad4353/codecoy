@@ -1,6 +1,6 @@
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
-
 import 'location_adapter.dart';
 
 class HiveHelper {
@@ -8,6 +8,7 @@ class HiveHelper {
     try {
       final appDocumentDir = await getApplicationDocumentsDirectory();
       Hive.init(appDocumentDir.path);
+      Hive.registerAdapter(LocationAdapter());
     } catch (e) {
       print(e);
     }
@@ -30,6 +31,20 @@ class HiveHelper {
       } else {
         return false;
       }
+    } catch (e) {
+      print(e.toString());
+      return false;
+    }
+  }
+
+
+  static Future<bool> addLocation({ required double  latitude,required double longitude,required String name,required String time}) async {
+    try {
+      final box = await Hive.openBox('locations');
+      EasyLoading.showInfo('Box has ${box.length} items:');
+      await box.add(Location(name, latitude, longitude,time));
+      await box.close();
+      return true;
     } catch (e) {
       print(e.toString());
       return false;
