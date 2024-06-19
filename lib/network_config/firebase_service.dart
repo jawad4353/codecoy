@@ -12,7 +12,25 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 class FirebaseAuthService {
   static final FirebaseAuth _auth = FirebaseAuth.instance;
   static final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  static final FirebaseStorage _storage = FirebaseStorage.instance;
 
+  static Future<void> initialize() async {
+    await Firebase.initializeApp(
+      options: const FirebaseOptions(
+        apiKey: "AIzaSyDvucuzUkiSI6_W2uFCUXoYGvwkoYtjK3s",
+        appId: "1:268459879851:android:5b3867c3ef984e2bb036ee",
+        messagingSenderId: '268459879851',
+        projectId: "codecoy-5d6fa",
+        storageBucket: 'codecoy-5d6fa.appspot.com',
+      ),
+    );
+  }
+
+
+  static Future<void> getAppVersion() async {
+    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    version = packageInfo.version;
+  }
 
   static Future<User?> registerWithEmailAndPassword({required String name,required String email
     ,required String password,required String designation }) async {
@@ -144,22 +162,24 @@ class FirebaseAuthService {
       EasyLoading.dismiss();
     }
   }
-
-  static Future<void> initialize() async {
-    await Firebase.initializeApp(
-      options: const FirebaseOptions(
-        apiKey: "AIzaSyDvucuzUkiSI6_W2uFCUXoYGvwkoYtjK3s",
-        appId: "1:268459879851:android:5b3867c3ef984e2bb036ee",
-        messagingSenderId: '268459879851',
-        projectId: "codecoy-5d6fa",
-        storageBucket: 'codecoy-5d6fa.appspot.com',
-      ),
-    );
+  static Future<bool> deleteAccount() async {
+    try {
+      EasyLoading.show(status: 'deleting...');
+      await _auth.currentUser!.delete().then((value) async => {
+      await _firestore.collection('users').doc(preferences.getString(AppPrefs.keyEmail)).delete()
+      });
+      await _storage.ref('profiles/${preferences.getString(AppPrefs.keyEmail)}.png').delete();
+      preferences.clear();
+      EasyLoading.showSuccess('Deleted');
+      return true;
+    } catch (e) {
+      EasyLoading.showError(e.toString().split(']')[1]);
+      return false;
+    } finally {
+      EasyLoading.dismiss();
+    }
   }
 
 
-  static Future<void> getAppVersion() async {
-    PackageInfo packageInfo = await PackageInfo.fromPlatform();
-    version = packageInfo.version;
-  }
+
 }

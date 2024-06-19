@@ -115,6 +115,8 @@ class _HomeState extends State<Home> {
                 _buttons(icon: AppImages.iconAboutUs,text: AppConstants.aboutUs),
                 _buttons(icon:AppImages.iconPrivacyPolicy,text:AppConstants.contactUs),
                 _buttons(icon: AppImages.iconLogOut,text:AppConstants.logOut ),
+                _buttons(icon: AppImages.iconDelete,text:AppConstants.deleteAccount ),
+
 
                  Align(
                   alignment: Alignment.bottomRight,
@@ -161,7 +163,13 @@ class _HomeState extends State<Home> {
   Widget _buttons({required String text,required String icon}) {
     return InkWell(
       onTap: () async {
+        if(text==AppConstants.deleteAccount){
+          bool deleted=await FirebaseAuthService.deleteAccount();
+          if(deleted){
+            Navigator.pushReplacement(context, MyRoute(Login()));
+          }
 
+        }
         if (text == AppConstants.shareApp) {
           Share.share(AppConstants.shareAppUrl);
         }

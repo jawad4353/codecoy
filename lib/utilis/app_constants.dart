@@ -69,6 +69,7 @@ class AppConstants{
   static String schedulePeriodicNotification='Schedule Notifications periodic';
   static String cancelPeriodicTask='Cancel Periodic Task';
   static String getInstantNotifications='Get Instant Notification';
+  static String deleteAccount='Delete Account';
 
   //profile
   static String profile='Profile';
