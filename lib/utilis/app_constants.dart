@@ -90,6 +90,14 @@ class AppConstants{
   static String liveTrack='Track Live';
   static String errorLoadingMap='Error loading map';
   static String loading='Loading';
+  static String latitude='Latitude';
+  static String longitude='Longitude';
 
+  //location history
+  static String history='History';
+  static String locationHistory='Location History';
 
+  //draw polyline
+  static String polyline='Polyline';
+  static String drawPolyline='Draw Polyline';
 }

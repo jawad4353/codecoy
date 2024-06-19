@@ -1,6 +1,8 @@
 
 import 'package:codecoy/data/hive-helper.dart';
+import 'package:codecoy/main.dart';
 import 'package:codecoy/utilis/app_constants.dart';
+import 'package:codecoy/utilis/app_preferences.dart';
 import 'package:codecoy/view/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -90,8 +92,18 @@ class _LiveTrackingMapState extends State<LiveTrackingMap> {
 
 
   saveLocationOffline(LatLng currentPosition) async {
-    String address=await SupportingMethods.getAddressFromCoordinates(currentPosition.latitude, currentPosition.longitude);
-    HiveHelper.addLocation(latitude: currentPosition.latitude, longitude: currentPosition.longitude, name: address, time: DateTime.now().toString());
+    //I added this check distance method as stream was continuously adding location in hive even if i move my phone slightly now
+    // location will be added offline if its difference will be 100 meters or more
+    double distance=SupportingMethods.calculateDistance(lat1:preferences.getDouble(AppPrefs.keyLatitude)??0.0 ,lon1:preferences.getDouble(AppPrefs.keyLongitude)??0.0  ,
+        lat2:currentPosition.latitude,lon2:currentPosition.longitude );
+    print(distance);
+    if(distance>100){
+      String address=await SupportingMethods.getAddressFromCoordinates(currentPosition.latitude, currentPosition.longitude);
+      HiveHelper.addLocation(latitude: currentPosition.latitude, longitude: currentPosition.longitude, name: address, time: DateTime.now().toString());
+      preferences.setDouble(AppPrefs.keyLatitude, currentPosition.latitude);
+      preferences.setDouble(AppPrefs.keyLongitude, currentPosition.longitude);
+    }
+
   }
 
 }

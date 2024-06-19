@@ -7,8 +7,8 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 import '../../main.dart';
 import '../../utilis/app_preferences.dart';
-part 'live_tracking._event.dart';
-part 'live_tracking._state.dart';
+part 'draw_polyline_event.dart';
+part 'draw_polyline_state.dart';
 
 class LiveTrackingBloc extends Bloc<LiveTrackingEvent, LiveTrackingState> {
   Location _location=new Location();

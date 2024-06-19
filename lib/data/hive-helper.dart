@@ -41,7 +41,7 @@ class HiveHelper {
   static Future<bool> addLocation({ required double  latitude,required double longitude,required String name,required String time}) async {
     try {
       final box = await Hive.openBox('locations');
-      EasyLoading.showInfo('Box has ${box.length} items:');
+      EasyLoading.showInfo('Location added offline');
       await box.add(Location(name, latitude, longitude,time));
       await box.close();
       return true;

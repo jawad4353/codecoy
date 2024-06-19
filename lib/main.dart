@@ -26,7 +26,6 @@ void callbackDispatcher() {
   });
 }
 
-//AIzaSyB12hWno8_DIMqw7xCV1QeqYn6I8FiIxVw
 late SharedPreferences preferences;
 String ? version;
 String ? bearerToken;
