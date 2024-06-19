@@ -3,6 +3,7 @@ import 'package:codecoy/view/widgets/custom_text_field.dart';
 import 'package:codecoy/view_model/draw_polyline_bloc/draw_polyline_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../../../utilis/app_colors.dart';
@@ -24,7 +25,7 @@ class _DrawPolyLineState extends State<DrawPolyLine> {
   @override
   void initState() {
     super.initState();
-    context.read<DrawPolyLineBloc>().add(FetchLocationEvent(context));
+    context.read<DrawPolyLineBloc>().add(const FetchLocationEvent(null));
   }
 
   @override
@@ -44,32 +45,7 @@ class _DrawPolyLineState extends State<DrawPolyLine> {
           BlocBuilder<DrawPolyLineBloc, DrawPolyLineState>(
             builder: (context, state) {
               if (state is DrawPolyLineLoadedState) {
-                return SizedBox(
-                    height: 1.sh,
-                    child: GoogleMap(
-                      myLocationEnabled: true,
-                      myLocationButtonEnabled: true,
-                      onMapCreated: (GoogleMapController controller) {},
-                      initialCameraPosition: CameraPosition(
-                        target: LatLng(
-                          state.currentPosition.latitude ?? 0.0,
-                          state.currentPosition.longitude ?? 0.0,
-                        ),
-                        zoom: 15,
-                      ),
-                      markers: <Marker>{
-                        Marker(
-                          markerId: const MarkerId("current_location"),
-                          position: LatLng(
-                            state.currentPosition.latitude ?? 0.0,
-                            state.currentPosition.longitude ?? 0.0,
-                          ),
-                          infoWindow: const InfoWindow(
-                            title: "My Location",
-                          ),
-                        ),
-                      },
-                    ));
+                return googleMap(currentPosition: state.currentPosition, markers: state.markers, polylines: state.polylines);
               } else if (state is DrawPolyLineErrorState) {
                 return Center(child: Text(state.message));
               }
@@ -97,14 +73,20 @@ class _DrawPolyLineState extends State<DrawPolyLine> {
                       inputFormatter: AppConstants.longitudeLatitudeFormatter),
                   SizedBox(height: 5.h,),
                   customTextField(
-                      controller: destinationLatitude,
+                      controller: destinationLongitude,
                       hintText: AppConstants.longitudeHint,
                       title: AppConstants.longitude,
                       icon: AppImages.longitudeLatitudeIcon,
                       isPasswordField: false,
                       inputFormatter: AppConstants.longitudeLatitudeFormatter),
                   SizedBox(height: 5.h,),
-                  customButton(title: AppConstants.drawPolyline, onPressed: (){})
+                  customButton(title: AppConstants.drawPolyline, onPressed: (){
+                    if(destinationLatitude.text.isEmpty || destinationLongitude.text.isEmpty){
+                      EasyLoading.showInfo('Destination latitude longitude required !');
+                      return;
+                    }
+                    context.read<DrawPolyLineBloc>().add( FetchLocationEvent(LatLng(double.parse(destinationLatitude.text),double.parse(destinationLongitude.text))));
+                  })
                 ],
               ),
             ),
@@ -112,5 +94,22 @@ class _DrawPolyLineState extends State<DrawPolyLine> {
         ],
       ),
     );
+  }
+
+
+  Widget googleMap({required LatLng currentPosition,required Set<Marker> markers,required List<Polyline> polylines  }){
+    return SizedBox(
+        height: 1.sh,
+        child: GoogleMap(
+          myLocationEnabled: true,
+          myLocationButtonEnabled: true,
+          onMapCreated: (GoogleMapController controller) {},
+          initialCameraPosition: CameraPosition(
+            target: currentPosition,
+            zoom: 15,
+          ),
+          markers:markers,
+          polylines: Set.of(polylines),
+        ));
   }
 }

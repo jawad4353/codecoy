@@ -14,8 +14,8 @@ class DrawPolyLineLoadEvent extends DrawPolyLineEvent{
 
 
 class FetchLocationEvent extends DrawPolyLineEvent{
-  final BuildContext context;
-  const FetchLocationEvent(this.context);
+  final dynamic destinationLocation;
+  const FetchLocationEvent(this.destinationLocation);
   @override
-  List<Object?> get props => [context];
+  List<Object?> get props => [destinationLocation];
 }

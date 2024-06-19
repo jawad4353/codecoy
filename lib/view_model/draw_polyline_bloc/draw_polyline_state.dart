@@ -18,9 +18,11 @@ class DrawPolyLineLoadingState extends DrawPolyLineState {
 
 class DrawPolyLineLoadedState extends DrawPolyLineState {
   final LatLng currentPosition;
-  const DrawPolyLineLoadedState(this.currentPosition);
+  final Set<Marker> markers ;
+  final List<Polyline> polylines;
+  const DrawPolyLineLoadedState(this.currentPosition,this.markers,this.polylines);
   @override
-  List<Object> get props => [currentPosition];
+  List<Object> get props => [currentPosition,markers,polylines];
 }
 
 
