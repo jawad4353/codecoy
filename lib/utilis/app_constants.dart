@@ -20,6 +20,7 @@ class AppConstants{
   static String rememberMe='Remember Me';
   static String forgotPassword='Forgot Password ?';
   static FilteringTextInputFormatter emailFormatter=passwordFormatter;
+  static FilteringTextInputFormatter longitudeLatitudeFormatter=FilteringTextInputFormatter.allow(RegExp(r'^[0-9. .]*$'));
   static FilteringTextInputFormatter passwordFormatter= FilteringTextInputFormatter.allow(RegExp(r'^[a-zA-Z0-9_\-@.]*$'));
   static FilteringTextInputFormatter nameFormatter=FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z - ]'));
  //boarding
@@ -91,7 +92,9 @@ class AppConstants{
   static String errorLoadingMap='Error loading map';
   static String loading='Loading';
   static String latitude='Latitude';
+  static String latitudeHint='31.3';
   static String longitude='Longitude';
+  static String longitudeHint='74.3';
 
   //location history
   static String history='History';

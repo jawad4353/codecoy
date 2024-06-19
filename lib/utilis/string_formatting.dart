@@ -6,8 +6,7 @@ import 'package:intl/intl.dart';
 class StringFormatting{
 static String formatRegistrationDate({required String date}){
   DateTime dateTime = DateTime.parse(date);
-  String formattedDate = DateFormat('dd MMMM, yyyy').format(dateTime);
-  return formattedDate;
+  return DateFormat('dd MMMM, yyyy').format(dateTime);
 }
 
 static String capitalizeAfterSpace(String str) {
@@ -21,4 +20,11 @@ static String capitalizeAfterSpace(String str) {
   }
   return words.join(' ');
 }
+
+
+static String formatLocationTime({required String date}){
+  DateTime dateTime = DateTime.parse(date);
+  return DateFormat('dd MMMM, yyyy hh:mm a').format(dateTime);
+}
+
 }

@@ -1,31 +1,33 @@
 part of 'draw_polyline_bloc.dart';
 
-abstract class LiveTrackingState extends Equatable{
-  const LiveTrackingState();
+abstract class DrawPolyLineState extends Equatable{
+  const DrawPolyLineState();
 }
 
-class LiveTrackingInitial extends LiveTrackingState {
+class DrawPolyLineInitial extends DrawPolyLineState {
   @override
   List<Object> get props => [];
 }
 
-class LiveTrackingLoadingState extends LiveTrackingState {
-  const LiveTrackingLoadingState();
+class DrawPolyLineLoadingState extends DrawPolyLineState {
+  const DrawPolyLineLoadingState();
   @override
   List<Object> get props => [];
 }
 
 
-class LiveTrackingLoadedState extends LiveTrackingState {
+class DrawPolyLineLoadedState extends DrawPolyLineState {
   final LatLng currentPosition;
-  const LiveTrackingLoadedState(this.currentPosition);
+  const DrawPolyLineLoadedState(this.currentPosition);
   @override
   List<Object> get props => [currentPosition];
 }
 
 
-class LiveTrackingErrorState extends LiveTrackingState {
+class DrawPolyLineErrorState extends DrawPolyLineState {
+  final String message;
+ const DrawPolyLineErrorState(this.message);
   @override
-  List<Object> get props => [];
+  List<Object> get props => [message];
 }
 

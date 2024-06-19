@@ -36,6 +36,8 @@ class AppImages{
   static String iconComplains='assets/icons/complains_icon.png';
   static String iconHome='assets/icons/home_icon.png';
   static String iconFare='assets/icons/fare_icon.png';
+  static String longitudeLatitudeIcon='assets/icons/longi_lati_icon.png';
+
 
   //Auth Screens
   static String iconVisibility='assets/icons/icon_visibility.png';

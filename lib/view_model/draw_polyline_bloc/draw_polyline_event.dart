@@ -1,19 +1,19 @@
 part of 'draw_polyline_bloc.dart';
 
-abstract class LiveTrackingEvent extends Equatable {
-  const LiveTrackingEvent();
+abstract class DrawPolyLineEvent extends Equatable {
+  const DrawPolyLineEvent();
 }
 
 
-class LiveTrackingLoadEvent extends LiveTrackingEvent{
+class DrawPolyLineLoadEvent extends DrawPolyLineEvent{
   final LatLng currentPosition;
-  const LiveTrackingLoadEvent(this.currentPosition);
+  const DrawPolyLineLoadEvent(this.currentPosition);
   @override
   List<Object?> get props => [currentPosition];
 }
 
 
-class FetchLocationEvent extends LiveTrackingEvent{
+class FetchLocationEvent extends DrawPolyLineEvent{
   final BuildContext context;
   const FetchLocationEvent(this.context);
   @override
