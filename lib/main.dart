@@ -5,6 +5,7 @@ import 'package:codecoy/utilis/app_colors.dart';
 import 'package:codecoy/view/screens/home/notification_service.dart';
 import 'package:codecoy/view_model/bottom_navbar_bloc/bottom_navbar_bloc.dart';
 import 'package:codecoy/view_model/live_tracking_bloc/live_tracking_bloc.dart';
+import 'package:codecoy/view_model/location_history_bloc/location_history_bloc.dart';
 import 'package:codecoy/view_model/login_bloc/login_bloc.dart';
 import 'package:codecoy/view_model/profile_bloc/profile_bloc.dart';
 import 'package:codecoy/view_model/register_bloc/register_bloc.dart';
@@ -62,6 +63,8 @@ class MyApp extends StatelessWidget   {
           BlocProvider(create: (context)=>BottomNavBarBloc()),
           BlocProvider(create: (context)=>ProfileBloc()),
           BlocProvider(create: (context)=>LiveTrackingBloc()),
+          BlocProvider(create: (context)=>LocationHistoryBloc()),
+          BlocProvider(create: (context)=>LocationHistoryBloc()),
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,

@@ -96,6 +96,8 @@ class AppConstants{
   //location history
   static String history='History';
   static String locationHistory='Location History';
+  static String noHistory='No History';
+
 
   //draw polyline
   static String polyline='Polyline';
