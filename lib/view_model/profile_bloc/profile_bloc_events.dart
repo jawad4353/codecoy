@@ -10,3 +10,8 @@ class ProfileLoadEvent extends ProfileEvent{
   List<Object?> get props => [];
 }
 
+class ProfileClearEvent extends ProfileEvent{
+  const ProfileClearEvent();
+  @override
+  List<Object?> get props => [];
+}

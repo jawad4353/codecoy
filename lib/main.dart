@@ -30,6 +30,7 @@ void callbackDispatcher() {
 
 late SharedPreferences preferences;
 String ? version;
+String googleMapsApiKeyHere='';  //give you key here also in android manifes.xml and info.plist file swift file
 String ? bearerToken;
 
 Future<void> main() async {

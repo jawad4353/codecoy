@@ -5,6 +5,7 @@ import 'package:codecoy/utilis/app_preferences.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import '../main.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -155,7 +156,7 @@ class FirebaseAuthService {
         preferences.remove(AppPrefs.keyIsLogin);
         preferences.remove(AppPrefs.keyName);
         preferences.remove(AppPrefs.keyId);
-        HiveHelper.deleteDatabase();
+        await HiveHelper.deleteDatabase();
       } else {
         preferences.clear();
       }

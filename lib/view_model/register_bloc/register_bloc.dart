@@ -7,7 +7,11 @@ import '../../utilis/app_routes.dart';
 import '../../view/auth/login.dart';
 part 'register_event.dart';
 part 'register_state.dart';
-
+/*
+I am using this bloc in registration .To manage state of register button .Just emitting the
+different state when user clicks the buttons once and emit resulted state on completion of
+api call or asynchronous calls
+ */
 class RegisterBloc extends Bloc<RegisterUserEvent, RegisterUserState> {
   RegisterBloc() : super(RegisterInitial()) {
     on<RegisterUserEvent>((event, emit) async{

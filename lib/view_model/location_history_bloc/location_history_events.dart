@@ -11,3 +11,9 @@ class LocationHistoryLoadEvent extends LocationHistoryEvent{
   List<Object?> get props => [];
 }
 
+class LocationHistoryClearEvent extends LocationHistoryEvent{
+  const LocationHistoryClearEvent();
+  @override
+  List<Object?> get props => [];
+}
+

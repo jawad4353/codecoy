@@ -2,6 +2,9 @@ import 'package:awesome_notifications/awesome_notifications.dart';
 import '../../../utilis/app_colors.dart';
 import '../../../utilis/app_constants.dart';
 
+/*
+This class have methods to work with notifications i am using awesome notifications package
+ */
 class NotificationService {
   static int _notificationId = 0;
 

@@ -10,7 +10,11 @@ import '../../../utilis/app_colors.dart';
 import '../../../utilis/app_constants.dart';
 import '../../../utilis/app_images.dart';
 import '../../widgets/custom_appbar.dart';
-
+/*
+Initially i am adding destination null in  FetchLocationEvent so initially no
+polyline will be created .on entering latitude and longitude i am passing LatLng object having values of
+destination .So then the emitted state will give us polylines list from our current location to destination location
+ */
 class DrawPolyLine extends StatefulWidget {
   const DrawPolyLine({super.key});
 

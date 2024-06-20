@@ -9,7 +9,9 @@ import '../../main.dart';
 import '../../utilis/app_preferences.dart';
 part 'live_tracking._event.dart';
 part 'live_tracking._state.dart';
-
+/*
+tracing location of user continuously
+ */
 class LiveTrackingBloc extends Bloc<LiveTrackingEvent, LiveTrackingState> {
   Location _location=new Location();
   LiveTrackingBloc() : super(LiveTrackingInitial()) {

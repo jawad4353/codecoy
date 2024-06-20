@@ -12,6 +12,11 @@ import '../../utilis/app_preferences.dart';
 part 'profile_bloc_events.dart';
 part 'profile_bloc_states.dart';
 
+/*
+using this bloc for profile screen .it will fetch the users data from firebase collection if
+ any kind of error has occured then it will load data from hive if present
+.Means we will be able to see profile screen offline after  it loaded once
+ */
 class ProfileBloc extends Bloc<ProfileEvent, ProfileStates> {
   bool isFirstEvent = true;
   ProfileBloc() : super(ProfileInitialState()) {
@@ -45,6 +50,9 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileStates> {
         }
       }
 
+      if(event is ProfileClearEvent){
+        emit(ProfileInitialState());
+      }
     });
   }
 }

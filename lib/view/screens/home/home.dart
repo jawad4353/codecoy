@@ -1,8 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:codecoy/network_config/firebase_service.dart';
 import 'package:codecoy/utilis/app_constants.dart';
+import 'package:codecoy/view/screens/location_history/location_history.dart';
 import 'package:codecoy/view/widgets/custom_button.dart';
 import 'package:codecoy/view_model/bottom_navbar_bloc/bottom_navbar_bloc.dart';
+import 'package:codecoy/view_model/location_history_bloc/location_history_bloc.dart';
 import 'package:codecoy/view_model/profile_bloc/profile_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -183,6 +185,8 @@ class _HomeState extends State<Home> {
           bool s = await onLogOut(context);
           if (s) {
             bool logout= await FirebaseAuthService.signOut();
+            context.read<ProfileBloc>().add(const ProfileClearEvent());
+            context.read<LocationHistoryBloc>().add(const LocationHistoryClearEvent());
             if(logout){
               Navigator.pushReplacement(context, MyRoute(const Login()));
             }
