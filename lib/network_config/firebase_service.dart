@@ -184,7 +184,7 @@ class FirebaseAuthService {
           .delete();
       preferences.clear();
       EasyLoading.showSuccess('Deleted');
-      HiveHelper.deleteDatabase();
+      //HiveHelper.deleteDatabase();
       return true;
     } catch (e) {
       EasyLoading.showError(e.toString().split(']')[1]);

@@ -40,8 +40,8 @@ class _BottomScreenState extends State<BottomScreen> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(onWillPop: () async {
-      bool result = await onExit(context);
-      return result;
+      bool exit=await onExit(context);
+      return exit;
     }, child: BlocBuilder<BottomNavBarBloc, BottomNavBarStates>(
         builder: (context, state) {
       if (state is BottomNavBarLoadedState) {

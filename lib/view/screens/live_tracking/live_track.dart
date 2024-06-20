@@ -105,7 +105,7 @@ class _LiveTrackingMapState extends State<LiveTrackingMap> {
         lat2: currentPosition.latitude,
         lon2: currentPosition.longitude);
     print(distance);
-    if (distance > 100) {
+    if (distance > 20) {
       String address = await SupportingMethods.getAddressFromCoordinates(
           currentPosition.latitude, currentPosition.longitude);
       HiveHelper.addLocation(

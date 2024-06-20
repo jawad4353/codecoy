@@ -56,7 +56,7 @@ class AppConstants{
   static String logOut='Logout';
   static String contactUsUrl='https://codecoytechnologies.com/contact/';
   static String aboutUsUrl='https://codecoytechnologies.com/about/';
-  static String shareAppUrl='https://drive.google.com/file/d/1xlWseTSDabQTf7m6bFieiDdjosFyDt_b/view?usp=sharing';
+  static String shareAppUrl='https://drive.google.com/file/d/1mM315ZUGUZfLaU3LMpz91g3O8NksxRl2/view?usp=sharing';
   static String appVersion='version $version';
   static String viewImage='View Image';
   static String home='Home';

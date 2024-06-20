@@ -90,7 +90,7 @@ class _HomeState extends State<Home> {
 
                 InkWell(
                   onTap: (){
-                    context.read<BottomNavBarBloc>().add(const BottomNavBarChangePageEvent(1));
+                    context.read<BottomNavBarBloc>().add(const BottomNavBarChangePageEvent(2));
                   },
                   child: BlocBuilder<ProfileBloc,ProfileStates>(
                     builder: (context,state) {
